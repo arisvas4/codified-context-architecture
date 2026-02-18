@@ -1,0 +1,15 @@
+{
+  "hooks": {
+    "SessionStart": [
+      {
+        "matcher": "startup",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 .claude/scripts/context-drift-check.py"
+          }
+        ]
+      }
+    ]
+  }
+}

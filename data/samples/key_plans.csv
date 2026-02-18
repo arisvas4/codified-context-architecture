@@ -1,0 +1,40 @@
+milestone,milestone_date,plan_title,plan_date,size_kb,score,plan_file
+Cross-Platform Mac,2025-12-27,Cross-Platform GitHub Collaboration Plan (Windows - macOS),2025-12-27,9.8,41,cross-platform-github-collaboration-plan.md
+Cross-Platform Mac,2025-12-27,Fullscreen Coordinate Issues - Cross-Platform Fix Plan,2026-01-06,5.8,23,fullscreen-coordinate-issues.md
+Cross-Platform Mac,2025-12-27,macOS Rendering Issue Investigation Plan,2025-12-28,3.8,20,macos-rendering-issue.md
+LDtk Integration,2026-01-01,Hub State Refactor: Tilemap-Based Grid System,2026-01-01,29.9,25,hub-state-refactor.md
+LDtk Integration,2026-01-01,Tilemap Alignment Fix + Hub State Update,2025-12-29,23.0,25,tilemap-alignment-fix.md
+LDtk Integration,2026-01-01,Fix: Network Lobby to Hub State Synchronization,2026-01-02,50.9,15,network-lobby-hub-sync.md
+Physics Performance,2026-01-03,Plan: Enemy-to-Enemy Collision Physics - PERFORMANCE FIX,2026-01-02,12.9,35,enemy-collision-physics-performance.md
+Physics Performance,2026-01-03,Enemy Collision Physics - Final Optimization,2026-01-02,3.3,32,enemy-collision-final.md
+Physics Performance,2026-01-03,Performance Optimization Plan,2026-01-03,7.3,25,performance-optimization.md
+Power-Up System,2026-01-06,Power-Up System Refactor Plan,2026-01-05,10.5,15,power-up-system-refactor.md
+Power-Up System,2026-01-06,Fix Power-Up Pickup Race Condition,2026-01-08,7.6,12,power-up-pickup-race.md
+Virtual Framebuffer,2026-01-07,Game World Virtual Resolution Plan,2026-01-07,22.8,28,game-world-virtual-resolution.md
+Virtual Framebuffer,2026-01-07,Virtual Framebuffer Implementation Plan,2026-01-07,13.7,26,virtual-framebuffer-implementation.md
+Virtual Framebuffer,2026-01-07,Virtual Resolution Mouse Fix Plan,2026-01-07,5.1,23,virtual-resolution-mouse-fix.md
+ECS Performance,2026-01-07,Plan: Eliminate Per-Frame Allocations in ECS Systems,2026-01-06,4.4,32,eliminate-per-frame-allocations.md
+Host-Authoritative Damage,2026-01-08,Host-Authoritative Damage System,2026-01-07,16.9,36,host-authoritative-damage.md
+Host-Authoritative Damage,2026-01-08,Host-Authoritative Damage System Refactor Plan,2026-01-08,12.3,34,host-authoritative-damage-refactor.md
+Host-Authoritative Damage,2026-01-08,Host-Authoritative Damage System Refactor,2026-01-08,8.0,32,host-authoritative-damage-refactor-2.md
+Core Equipment,2026-01-07,Plan: Core Equipment & Sell Tab UX Improvements,2026-01-12,23.1,25,core-equipment-ux.md
+Core Equipment,2026-01-07,Core Forge System - Architecture Refactor & Bug Fixes,2026-01-24,15.4,16,core-forge-refactor.md
+Damage Types,2026-01-13,Plan: Update Armor/Resist Formula to Match Hero Stats,2026-01-13,5.5,23,armor-resist-formula.md
+Vertical Slice,2026-01-16,Task 2: Level Progression Flow - Portal Room Navigation,2026-01-15,25.0,26,level-progression-portals.md
+Vertical Slice,2026-01-16,Act 1 Vertical Slice: Implementation Tasks,2026-01-16,8.0,23,act1-vertical-slice.md
+Boss System,2026-01-17,Boss Fight Framework Implementation Plan,2026-01-24,44.1,18,boss-fight-framework.md
+Boss System,2026-01-17,Boss State Implementation Plan,2026-01-16,22.1,17,boss-state-implementation.md
+Boss System,2026-01-17,Dragon Boss Fight Improvement Plan,2026-01-24,12.1,24,dragon-boss-improvement.md
+Deterministic Combat,2026-01-21,Deterministic Crit/On-Hit Effect Synchronization - BUG FIX,2026-01-20,4.5,21,deterministic-crit-sync.md
+Deterministic Combat,2026-01-21,CombatRng Documentation Plan,2026-01-09,6.4,15,combat-rng-docs.md
+Deterministic Combat,2026-01-21,Plan: Fix Host Crit Not Syncing to Clients,2026-01-21,11.7,15,host-crit-sync-fix.md
+Save System,2026-01-21,Guest Profile Persistence Implementation - COMPLETED,2026-01-01,30.9,16,guest-profile-persistence.md
+Save System,2026-01-21,Task 2: Level Progression Flow - Portal Room Navigation,2026-01-15,25.0,18,level-progression-portals.md
+Stats System,2026-01-22,Legacy Stat System Migration Plan,2026-01-22,29.9,17,legacy-stat-migration.md
+Stats System,2026-01-22,Networking Sprint: Stats Shop and Drops Synchronization,2026-01-13,20.6,15,networking-sprint-stats.md
+Stats System,2026-01-22,Legacy Stat System Removal Plan,2026-01-21,6.7,13,legacy-stat-removal.md
+Shotgun Patterns,2026-01-23,Brute Shotgun Attack System Implementation,2026-01-23,23.6,18,brute-shotgun.md
+Dragon Boss,2026-01-24,Dragon Boss Fight Improvement Plan,2026-01-24,12.1,14,dragon-boss-improvement.md
+Dragon Boss,2026-01-24,Boss Fight Framework Implementation Plan,2026-01-24,44.1,8,boss-fight-framework.md
+Enemy Variants,2026-01-24,Comprehensive Enemy Combat System Plan,2026-01-24,41.8,9,enemy-combat-system.md
+Enemy Variants,2026-01-24,Comprehensive Enemy Combat System Plan,2026-01-23,30.3,9,enemy-combat-system-v1.md
