@@ -25,7 +25,14 @@ LLM-based coding agents start each session with a blank slate. On large projects
 │  │ • Key file reference map                              │  │
 │  └───────────────────────────────────────────────────────┘  │
 ├─────────────────────────────────────────────────────────────┤
-│  Layer 2: KNOWLEDGE BASE + RETRIEVAL (Cold Memory)          │
+│  Layer 2: SPECIALIZED AGENTS                                │
+│  ┌──────────┐ ┌──────────┐ ┌──────────┐ ┌──────────┐      │
+│  │ Code     │ │ Network  │ │ Debug    │ │ UI/UX    │      │
+│  │ Reviewer │ │ Protocol │ │ Profiler │ │ Designer │  ... │
+│  └──────────┘ └──────────┘ └──────────┘ └──────────┘      │
+│  Domain experts with focused prompts + context access       │
+├─────────────────────────────────────────────────────────────┤
+│  Layer 3: CODIFIED CONTEXT BASE + RETRIEVAL (Cold Memory)   │
 │  ┌──────────────────────┐  ┌──────────────────────────┐    │
 │  │ .claude/context/*.md │  │ MCP Retrieval Service    │    │
 │  │ • Subsystem specs    │  │ • list_subsystems()      │    │
@@ -33,21 +40,14 @@ LLM-based coding agents start each session with a blank slate. On large projects
 │  │ • Protocol docs      │  │ • search_context_docs()   │    │
 │  │ • Pattern guides     │  │ • get_files_for_subsystem()│   │
 │  └──────────────────────┘  └──────────────────────────┘    │
-├─────────────────────────────────────────────────────────────┤
-│  Layer 3: SPECIALIZED AGENTS                                │
-│  ┌──────────┐ ┌──────────┐ ┌──────────┐ ┌──────────┐      │
-│  │ Code     │ │ Network  │ │ Debug    │ │ UI/UX    │      │
-│  │ Reviewer │ │ Protocol │ │ Profiler │ │ Designer │  ... │
-│  └──────────┘ └──────────┘ └──────────┘ └──────────┘      │
-│  Domain experts with focused prompts + context access       │
 └─────────────────────────────────────────────────────────────┘
 ```
 
 **Layer 1** is loaded into every agent session automatically. It contains project conventions, checklists, and orchestration rules.
 
-**Layer 2** contains detailed specifications loaded on demand. An MCP retrieval service maps tasks to relevant files, so agents only load what they need.
+**Layer 2** consists of specialized agents with domain expertise, focused prompts, and access to the retrieval service. They are invoked automatically based on trigger conditions in the constitution.
 
-**Layer 3** consists of specialized agents with domain expertise, focused prompts, and access to the retrieval service. They are invoked automatically based on trigger conditions in the constitution.
+**Layer 3** contains detailed specifications loaded on demand. An MCP retrieval service maps tasks to relevant files, so agents only load what they need.
 
 ## Key Findings (from the Paper)
 
@@ -64,21 +64,27 @@ The high prompt brevity suggests that when the architecture carries enough conte
 ## Repository Structure
 
 ```
+quickstart/             Factory agents to bootstrap the architecture
+  constitution-factory/       Generate a constitution for any project
+  agent-factory/              Generate specialized agents
+  context-factory/            Generate context base documents
+  README.md                   Setup guide
+
 framework/              Generic templates to build your own architecture
   constitution-template.md    Annotated CLAUDE.md skeleton
-  context-docs/               Example knowledge base documents
+  context-docs/               Example context base documents
   agent-specs/                Example agent specifications
   scripts/                    Validation and staleness detection
 
-mcp-server/             MCP retrieval service (Layer 2 implementation)
+mcp-server/             MCP retrieval service (Layer 3 implementation)
   server.py                   All 6 tools with example subsystems
   pyproject.toml              Package configuration
   README.md                   Setup instructions
 
 case-study/             Real artifacts from the paper's case study project
   CLAUDE.md                   The actual constitution (~660 lines, sanitized)
-  context-docs/               4 real knowledge base documents
-  agent-specs/                3 real agent specifications
+  context-docs/               5 real context base documents
+  agent-specs/                3 representative agent specifications
   mcp-server/                 The full MCP server
 
 data/                   Interaction data and analysis
