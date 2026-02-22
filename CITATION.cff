@@ -1,0 +1,17 @@
+cff-version: 1.2.0
+title: "Codified Context: Infrastructure for AI Agents in a Complex Codebase"
+message: "If you use this framework, please cite the paper."
+type: software
+authors:
+  - family-names: Vasilopoulos
+    given-names: Aris
+    orcid: "https://orcid.org/0000-0001-7494-7801"
+license: MIT
+repository-code: "https://github.com/arisvas4/codified-context-infrastructure"
+keywords:
+  - AI-assisted software development
+  - multi-agent systems
+  - context infrastructure
+  - software architecture
+  - agentic software engineering
+  - context engineering
