@@ -15,3 +15,6 @@ Thumbs.db
 .idea/
 *.swp
 *.swo
+
+# Manuscript (local working copy, not distributed with repo)
+Manuscript/
