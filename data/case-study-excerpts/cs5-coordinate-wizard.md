@@ -2,7 +2,7 @@
 
 This excerpt demonstrates a read-only specialized agent (`coordinate-wizard`) instantly diagnosing an isometric rendering bug that would have required significant investigation by a general-purpose agent. The domain-specific knowledge encoded in the agent's prompt -- about IsometricCorrection, WorldToIsoWorld, and the difference between Pattern A (camera matrix) and Pattern B (VirtualToPhysical) rendering -- enables it to read 5 files and produce a precise, line-numbered diagnosis in a single response.
 
-**Architectural layers demonstrated**: Layer 3 (specialized agent with domain expertise)
+**Architectural tiers demonstrated**: Tier 2 (specialized agent with domain expertise)
 
 **Session context**: January 25, 2026. Improving a boss fight. After tuning attack frequencies and ranges, the human noticed beam telegraphs rendering off-screen while still dealing damage at the correct position. 4 edits fixed the issue.
 

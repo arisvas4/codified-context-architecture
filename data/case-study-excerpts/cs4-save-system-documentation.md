@@ -2,7 +2,7 @@
 
 This excerpt demonstrates how a sub-agent, tasked with exploring game state transitions, discovers and uses pre-existing context documentation (`.claude/context/`) as a navigational map for the codebase. The agent uses MCP tools to survey subsystems, then falls back to filesystem globbing to discover coordination documents like `save-system.md`, which it cites as the authoritative reference for save persistence architecture -- even without reading it in full.
 
-**Architectural layers demonstrated**: Layer 2 (knowledge base as coordination point)
+**Architectural tiers demonstrated**: Tier 3 (knowledge base as coordination point)
 
 **Session context**: January 21, 2026. Building systematic play-mode guidelines for 7 network configurations. 3 parallel Explore agents launched; this excerpt follows the agent investigating game state transitions and player management.
 

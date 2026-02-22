@@ -37,7 +37,7 @@
 ---
 
 <!-- ═══════════════════════════════════════════════════════════════════════
-     LAYER 3: AGENT ORCHESTRATION (highest architectural novelty)
+     TIER 2: AGENT ORCHESTRATION (highest architectural novelty)
 
      This section defines WHEN specialized agents are invoked. In the
      codified context architecture, this is the primary mechanism for
@@ -96,7 +96,7 @@ Specialized agents in `[agents directory]`. **Invoke agents proactively** when t
 ---
 
 <!-- ═══════════════════════════════════════════════════════════════════════
-     LAYER 2: CONTEXT RETRIEVAL (MCP server + subsystem mapping)
+     TIER 3: CONTEXT RETRIEVAL (MCP server + subsystem mapping)
 
      This section defines HOW agents find architecture context. The MCP
      server provides structured lookups (faster and cheaper than grepping
@@ -190,7 +190,7 @@ After structural changes (new modules, new API endpoints, changed architectural 
 ---
 
 <!-- ═══════════════════════════════════════════════════════════════════════
-     LAYER 1: HOT-MEMORY CONSTITUTION (conventional project docs)
+     TIER 1: HOT-MEMORY CONSTITUTION (conventional project docs)
 
      Everything below this line is standard project documentation that
      would appear in any well-maintained CLAUDE.md. It's important but
@@ -272,8 +272,8 @@ After structural changes (new modules, new API endpoints, changed architectural 
 ├── tests/                  # [Test organization]
 ├── config/                 # [Configuration files]
 └── .claude/
-    ├── context/            # Architecture documentation (Layer 2)
-    ├── agents/             # Specialized agent specs (Layer 3)
+    ├── context/            # Architecture documentation (Tier 3)
+    ├── agents/             # Specialized agent specs (Tier 2)
     └── scripts/            # Validation and drift detection
 ```
 

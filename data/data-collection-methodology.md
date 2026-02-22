@@ -1,6 +1,6 @@
 # Data Collection Methodology
 
-This document describes the methodology for collecting, reconstructing, and analyzing interaction data reported in the manuscript "Codified Context as Infrastructure: A Layered Architecture for Agentic Software Engineering."
+This document describes the methodology for collecting, reconstructing, and analyzing interaction data reported in the manuscript "Codified Context: Infrastructure for AI Agents in a Complex Codebase."
 
 ## Overview
 

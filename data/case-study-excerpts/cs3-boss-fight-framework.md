@@ -1,8 +1,8 @@
 # Case Study 3: Boss Fight Framework -- Architectural Inheritance via Context Documents
 
-This excerpt demonstrates the `systems-designer` agent reading an existing Layer 2 context document (`enemy-combat-system.md`) as its very first action before designing a new subsystem. The agent's design inherits established patterns (the Config/State component split, the Idle->Windup->Execute->Recovery state machine, the zero-bandwidth network model) rather than inventing new ones, because the context document made these patterns visible and explicit.
+This excerpt demonstrates the `systems-designer` agent reading an existing Tier 3 context document (`enemy-combat-system.md`) as its very first action before designing a new subsystem. The agent's design inherits established patterns (the Config/State component split, the Idle->Windup->Execute->Recovery state machine, the zero-bandwidth network model) rather than inventing new ones, because the context document made these patterns visible and explicit.
 
-**Architectural layers demonstrated**: Layer 2 (knowledge base as design input) + Layer 3 (specialized agent)
+**Architectural tiers demonstrated**: Tier 3 (knowledge base as design input) + Tier 2 (specialized agent)
 
 **Session context**: January 24-25, 2026. Multi-continuation session (9.3MB) implementing a multi-phase boss fight system. The `systems-designer` agent was spawned in the background alongside an `ecs-component-designer` agent to review the framework plan before implementation began.
 
@@ -29,9 +29,9 @@ This excerpt demonstrates the `systems-designer` agent reading an existing Layer
 
 > **Agent** (`systems-designer`, first 3 tool calls executed in parallel):
 >
-> 1. `Read enemy-combat-system.md` -- the Layer 2 context doc for the existing enemy system
+> 1. `Read enemy-combat-system.md` -- the Tier 3 context doc for the existing enemy system
 > 2. `Read enemies.json` -- the data definitions for current enemies
-> 3. `mcp__context7__get_files_for_subsystem("combat")` -- queries the retrieval layer for all combat-related source files
+> 3. `mcp__context7__get_files_for_subsystem("combat")` -- queries the retrieval service for all combat-related source files
 >
 > [Then reads 12 more source files: EnemyAttackConfigComponent.cs, EnemyAttackStateComponent.cs, EnemyComponent.cs, EnemyAttackSystem.cs, SpawnSystem.cs, EnemyDefinition.cs, BossState.cs, EntityFactory.cs, BossComponent.cs, BossAbilitySystem.cs, BossDefinition.cs, bosses.json, DamageMessages.cs]
 
@@ -69,6 +69,6 @@ This excerpt demonstrates the `systems-designer` agent reading an existing Layer
 
 ## Annotation
 
-This interaction demonstrates "architectural inheritance" -- the mechanism by which new subsystems absorb established patterns from existing documentation rather than reinventing them. The systems-designer agent's very first action was to read `enemy-combat-system.md`, the Layer 2 context document describing the existing attack system's patterns. This is not accidental: the agent's prompt referenced the document, and the agent treated it as authoritative.
+This interaction demonstrates "architectural inheritance" -- the mechanism by which new subsystems absorb established patterns from existing documentation rather than reinventing them. The systems-designer agent's very first action was to read `enemy-combat-system.md`, the Tier 3 context document describing the existing attack system's patterns. This is not accidental: the agent's prompt referenced the document, and the agent treated it as authoritative.
 
 The resulting design explicitly builds on existing patterns: it extends `BossComponent` rather than creating a new component, reuses the Config/State split pattern from enemy attacks, maintains the zero-bandwidth network model documented in the context doc, and extends `EnemySpawnMessage` for minion spawning rather than creating a new message type. The human's later question -- "are we amply re-using what we should from enemy combat system?" -- confirms that pattern reuse was an explicit design goal, not just a side effect. The context document made the existing patterns visible and queryable, enabling the agent to inherit them by design rather than discover them by accident.

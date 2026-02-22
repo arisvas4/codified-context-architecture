@@ -1,6 +1,6 @@
 # Case Study Evidence Files
 
-JSONL conversation transcripts referenced in Section 4.8 of the manuscript.
+JSONL conversation transcripts referenced in Section 4.4 of the manuscript.
 The raw JSONL files (18 files, ~149 MB) are preserved separately and not included in this repository due to size and privacy considerations.
 
 **Anonymized excerpts** from each case study are available in [`../case-study-excerpts/`](../case-study-excerpts/) with key interaction turns and architectural annotations.

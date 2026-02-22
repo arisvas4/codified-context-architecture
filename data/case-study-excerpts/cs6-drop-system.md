@@ -2,7 +2,7 @@
 
 This excerpt demonstrates the architecture's organic growth pattern. When tasked with refactoring the drop system, the agent's first action is to search for existing context documentation. The MCP tool returns zero matches -- a documentation gap. The agent then reads implementation files to build understanding from source, creates a new context document (`drop-system.md`), and uses it as the basis for multi-agent design consultation. Later in the session, a second context document (`item-system.md`) is created when the human recognizes another gap. This shows how coordination documents emerge from implementation work rather than being planned top-down.
 
-**Architectural layers demonstrated**: Layer 2 (knowledge base gap detection and creation)
+**Architectural tiers demonstrated**: Tier 3 (knowledge base gap detection and creation)
 
 **Session context**: January 25, 2026. Refactoring a drop/loot system after an orb/mod fusion redesign. 9 agent invocations (ecs-component-designer, systems-designer, code-reviewer, network-protocol-designer). 2 context documents created.
 

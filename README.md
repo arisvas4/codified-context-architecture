@@ -1,8 +1,8 @@
-# Codified Context as Infrastructure
+# Codified Context: Infrastructure for AI Agents in a Complex Codebase
 
-A three-layer architecture for organizing project knowledge so AI coding agents maintain coherence across sessions, follow conventions, and avoid repeating mistakes.
+A three-tier architecture for organizing project knowledge so AI coding agents maintain coherence across sessions, follow conventions, and avoid repeating mistakes.
 
-Companion repository to: *"Codified Context as Infrastructure: A Layered Architecture for Agentic Software Engineering"* by Aris Vasilopoulos ([arXiv, forthcoming](#links)).
+Companion repository to: *"Codified Context: Infrastructure for AI Agents in a Complex Codebase"* by Aris Vasilopoulos ([arXiv, forthcoming](#links)).
 
 ## The Problem
 
@@ -12,11 +12,11 @@ LLM-based coding agents start each session with a blank slate. On large projects
 - Require lengthy re-explanations of project structure
 - Make inconsistent decisions that drift from established patterns
 
-## The Solution: Three-Layer Context Infrastructure
+## The Solution: Three-Tier Context Infrastructure
 
 ```
 ┌─────────────────────────────────────────────────────────────┐
-│  Layer 1: CONSTITUTION (Hot Memory — always loaded)         │
+│  Tier 1: CONSTITUTION (Hot Memory — always loaded)          │
 │  ┌───────────────────────────────────────────────────────┐  │
 │  │ CLAUDE.md                                             │  │
 │  │ • Conventions, build commands, naming standards       │  │
@@ -25,14 +25,14 @@ LLM-based coding agents start each session with a blank slate. On large projects
 │  │ • Key file reference map                              │  │
 │  └───────────────────────────────────────────────────────┘  │
 ├─────────────────────────────────────────────────────────────┤
-│  Layer 2: SPECIALIZED AGENTS                                │
+│  Tier 2: SPECIALIZED AGENTS                                 │
 │  ┌──────────┐ ┌──────────┐ ┌──────────┐ ┌──────────┐      │
 │  │ Code     │ │ Network  │ │ Debug    │ │ UI/UX    │      │
 │  │ Reviewer │ │ Protocol │ │ Profiler │ │ Designer │  ... │
 │  └──────────┘ └──────────┘ └──────────┘ └──────────┘      │
 │  Domain experts with focused prompts + context access       │
 ├─────────────────────────────────────────────────────────────┤
-│  Layer 3: CODIFIED CONTEXT BASE + RETRIEVAL (Cold Memory)   │
+│  Tier 3: KNOWLEDGE BASE + RETRIEVAL (Cold Memory)           │
 │  ┌──────────────────────┐  ┌──────────────────────────┐    │
 │  │ .claude/context/*.md │  │ MCP Retrieval Service    │    │
 │  │ • Subsystem specs    │  │ • list_subsystems()      │    │
@@ -43,11 +43,11 @@ LLM-based coding agents start each session with a blank slate. On large projects
 └─────────────────────────────────────────────────────────────┘
 ```
 
-**Layer 1** is loaded into every agent session automatically. It contains project conventions, checklists, and orchestration rules.
+**Tier 1** is loaded into every agent session automatically. It contains project conventions, checklists, and orchestration rules.
 
-**Layer 2** consists of specialized agents with domain expertise, focused prompts, and access to the retrieval service. They are invoked automatically based on trigger conditions in the constitution.
+**Tier 2** consists of specialized agents with domain expertise, focused prompts, and access to the retrieval service. They are invoked automatically based on trigger conditions in the constitution.
 
-**Layer 3** contains detailed specifications loaded on demand. An MCP retrieval service maps tasks to relevant files, so agents only load what they need.
+**Tier 3** contains detailed specifications loaded on demand. An MCP retrieval service maps tasks to relevant files, so agents only load what they need.
 
 ## Key Findings (from the Paper)
 
@@ -55,11 +55,7 @@ LLM-based coding agents start each session with a blank slate. On large projects
 |--------|-------|
 | Knowledge-to-code ratio | ~24% (1 line of documentation per 4 lines of code) |
 | Context infrastructure | ~26,000 lines across constitution + 34 specs + 19 agents |
-| Prompt brevity | 52% of human prompts were ≤20 words |
 | Agent amplification | 2,801 prompts → 1,197 agent invocations → 16,522 agent turns |
-| Development cost | ~$693 across 283 sessions (~$2.45/session) |
-
-The high prompt brevity suggests that when the architecture carries enough context, the human can operate as a high-level director rather than a detailed instructor.
 
 ## Repository Structure
 
@@ -76,15 +72,15 @@ framework/              Generic templates to build your own architecture
   agent-specs/                Example agent specifications
   scripts/                    Validation and staleness detection
 
-mcp-server/             MCP retrieval service (Layer 3 implementation)
+mcp-server/             MCP retrieval service (Tier 3 implementation)
   server.py                   All 6 tools with example subsystems
   pyproject.toml              Package configuration
   README.md                   Setup instructions
 
 case-study/             Real artifacts from the paper's case study project
   CLAUDE.md                   The actual constitution (~660 lines, sanitized)
-  context-docs/               5 real context base documents
-  agent-specs/                3 representative agent specifications
+  context-docs/               Real knowledge base documents
+  agent-specs/                4 real agent specifications
   mcp-server/                 The full MCP server
 
 data/                   Interaction data and analysis
@@ -139,7 +135,7 @@ cp framework/agent-specs/example-code-reviewer.md /your-project/.claude/agents/c
 
 ### 5. Validate Cross-References
 
-Run the validation script to check that all three layers reference each other correctly:
+Run the validation script to check that all three tiers reference each other correctly:
 
 ```bash
 cp framework/scripts/validate-architecture.sh /your-project/.claude/scripts/
@@ -150,7 +146,7 @@ bash /your-project/.claude/scripts/validate-architecture.sh
 
 1. **Written for AI, not humans.** Context documents use tables, code blocks, and explicit patterns rather than prose. Agents parse structured content more reliably than natural language descriptions.
 
-2. **Layered loading.** Hot memory (constitution) is always present. Cold memory (specs) is loaded on demand via MCP retrieval. This keeps token usage efficient while making deep context available.
+2. **Tiered loading.** Hot memory (constitution) is always present. Cold memory (specs) is loaded on demand via MCP retrieval. This keeps token usage efficient while making deep context available.
 
 3. **Cross-referenced and validated.** The constitution references context docs, context docs reference source files, and the MCP server indexes both. A validation script checks all cross-references on every session start.
 

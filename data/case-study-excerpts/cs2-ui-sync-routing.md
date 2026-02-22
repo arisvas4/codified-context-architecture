@@ -1,8 +1,8 @@
 # Case Study 2: UI Sync Routing -- Captured Experience as Reusable Knowledge
 
-This excerpt demonstrates the creation of `ui-sync-patterns.md`, a Layer 2 knowledge document that codifies routing topology decisions for networked UI synchronization. The document distills implementation experience into a reusable decision framework with three routing topologies, delivery mode guidance, and concrete message examples.
+This excerpt demonstrates the creation of `ui-sync-patterns.md`, a Tier 3 knowledge document that codifies routing topology decisions for networked UI synchronization. The document distills implementation experience into a reusable decision framework with three routing topologies, delivery mode guidance, and concrete message examples.
 
-**Architectural layers demonstrated**: Layer 2 (knowledge base creation and reuse)
+**Architectural tiers demonstrated**: Tier 3 (knowledge base creation and reuse)
 
 **Session context**: January-February 2026. The "Before" session involved ad-hoc implementation of shop UI sync. The "After" session created `ui-sync-patterns.md` during radial dial implementation, capturing the routing topology patterns for future reuse.
 
@@ -28,14 +28,14 @@ This excerpt demonstrates the creation of `ui-sync-patterns.md`, a Layer 2 knowl
 ## Key Interaction 2: The Case Study in the Whitepaper
 
 > **Human** (provides selected text from whitepaper draft):
-> Case Study 3: Cross-Cutting Feature with Multi-Layer Support
+> Case Study 3: Cross-Cutting Feature with Multi-Tier Support
 >
 > **Context:** Adding networked UI synchronization for a radial dial interface (used for item management) required modifications across four subsystems: Entity Component System (new components), networking (new message types with dual delivery modes), UI rendering (overlay management), and input handling (controller support).
 >
-> **Architecture layers involved:**
-> - *Constitution (Layer 1):* The three-branch network code pattern (offline/host/client) ensured all three play modes were handled
-> - *Knowledge base (Layer 2):* A specification document (`ui-sync-patterns.md`) documented three routing topologies (hub-relay, direct-broadcast, client-to-host-only) with guidance on when to use each
-> - *Agents (Layer 3):* `network-protocol-designer` reviewed the message type design; `ui-and-ux-agent` reviewed the overlay implementation
+> **Architecture tiers involved:**
+> - *Constitution (Tier 1):* The three-branch network code pattern (offline/host/client) ensured all three play modes were handled
+> - *Agents (Tier 2):* `network-protocol-designer` reviewed the message type design; `ui-and-ux-agent` reviewed the overlay implementation
+> - *Knowledge base (Tier 3):* A specification document (`ui-sync-patterns.md`) documented three routing topologies (hub-relay, direct-broadcast, client-to-host-only) with guidance on when to use each
 >
 > **Interpretation:** This case illustrates the architecture functioning as a whole: the constitution ensured the standard network branching pattern was followed, the knowledge base provided the specific routing topology guidance needed for this feature class, and specialized agents reviewed domain-specific correctness.
 

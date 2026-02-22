@@ -4,15 +4,15 @@ Three standalone agents that set up the **codified context architecture** from s
 
 ## Quick Start (For Humans)
 
-These agents implement the architecture described in "Codified Context as Infrastructure: A Layered Architecture for Agentic Software Engineering" (Vasilopoulos, 2026). They work with any AI coding assistant that supports custom agent specifications (e.g., Claude Code's `.claude/agents/` directory).
+These agents implement the architecture described in "Codified Context: Infrastructure for AI Agents in a Complex Codebase" (Vasilopoulos, 2026). They work with any AI coding assistant that supports custom agent specifications (e.g., Claude Code's `.claude/agents/` directory).
 
 **What they do:**
 
-| Factory | Creates | Layer |
+| Factory | Creates | Tier |
 |---------|---------|-------|
-| `constitution-factory` | Your project's CLAUDE.md (root instruction document loaded every session) | Layer 1: Constitution |
-| `agent-factory` | Specialized domain-expert agents with deep codified knowledge | Layer 2: Agents |
-| `context-factory` | Knowledge base documents in `.claude/context/` | Layer 3: Knowledge Base |
+| `constitution-factory` | Your project's CLAUDE.md (root instruction document loaded every session) | Tier 1: Constitution |
+| `agent-factory` | Specialized domain-expert agents with deep codified knowledge | Tier 2: Agents |
+| `context-factory` | Knowledge base documents in `.claude/context/` | Tier 3: Knowledge Base |
 
 **Setup in 3 steps:**
 
@@ -52,7 +52,7 @@ The AI will handle the rest — reading the factory specs, asking you the right 
 
 ### Bootstrapping Sequence
 
-Follow this order. Each layer builds on the previous one.
+Follow this order. Each tier builds on the previous one.
 
 #### Phase 1: Constitution (do this first)
 
@@ -137,20 +137,20 @@ Creates knowledge base documents — AI-parseable system blueprints that serve a
 
 ### Architecture Overview
 
-The three-layer architecture separates project knowledge by loading strategy:
+The three-tier architecture separates project knowledge by loading strategy:
 
 ```
-Layer 1: Constitution (Hot Memory)
+Tier 1: Constitution (Hot Memory)
   Always loaded every session. Conventions, orchestration rules,
   agent trigger tables. ~1-5% of total knowledge, high signal density.
   File: CLAUDE.md at project root.
 
-Layer 2: Specialized Agents (Domain Specialists)
+Tier 2: Specialized Agents (Domain Specialists)
   Invoked per task via trigger table routing. Each agent embeds
   deep domain knowledge (~70% domain content, ~30% behavioral rules).
   Files: .claude/agents/{agent-id}/AGENT.md
 
-Layer 3: Knowledge Base (Cold Memory)
+Tier 3: Knowledge Base (Cold Memory)
   Retrieved on-demand via MCP or manual loading. Detailed system
   specifications, API references, tuning constants.
   Files: .claude/context/{topic}.md
@@ -161,7 +161,7 @@ Layer 3: Knowledge Base (Cold Memory)
 - Agents are domain experts, not generic helpers — they carry project-specific patterns
 - The constitution orchestrates routing: trigger tables map file changes to specialist agents
 - Context docs are AI-first (information-dense tables) and human-readable second
-- All three layers can be AI-generated under human architectural direction
+- All three tiers can be AI-generated under human architectural direction
 
 ### Adapting for Your Tool
 

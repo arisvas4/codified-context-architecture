@@ -1,6 +1,6 @@
 # Context7 MCP Server
 
-A context-retrieval MCP (Model Context Protocol) server that implements **Layer 3** of the codified context infrastructure. It gives Claude Code on-demand access to project architecture knowledge without loading everything into the prompt.
+A context-retrieval MCP (Model Context Protocol) server that implements **Tier 3** of the codified context infrastructure. It gives Claude Code on-demand access to project architecture knowledge without loading everything into the prompt.
 
 ## What It Does
 
@@ -153,11 +153,11 @@ CONTEXT_DIR = PROJECT_ROOT / ".claude" / "context"   # Where context docs live
 ## How It Fits in the Architecture
 
 ```
-Layer 1: Constitution (CLAUDE.md)
-    ↓ always loaded, references Layer 3 tools
-Layer 2: Specialized Agents (19 domain experts)
+Tier 1: Constitution (CLAUDE.md)
+    ↓ always loaded, references Tier 3 tools
+Tier 2: Specialized Agents (19 domain experts)
     ↓ suggest_agent() routes tasks to agents
-Layer 3: Context Retrieval (THIS SERVER)
+Tier 3: Context Retrieval (THIS SERVER)
     ↑ find_relevant_context() discovers docs
 ```
 

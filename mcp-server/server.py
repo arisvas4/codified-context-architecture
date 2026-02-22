@@ -1,12 +1,12 @@
 # =============================================================================
-# FRAMEWORK NOTE — Context Retrieval MCP Server (Layer 2)
+# FRAMEWORK NOTE — Context Retrieval MCP Server (Tier 3)
 # =============================================================================
 #
 # SOURCE: Real MCP server from the case study project case study (~1,600 lines).
 # This is the production server that Claude Code queries via tool calls.
 #
 # WHAT THIS DOES:
-#   Implements Layer 2 (cold-memory retrieval) of the codified context
+#   Implements Tier 3 (cold-memory retrieval) of the codified context
 #   architecture. Provides 7 MCP tools that let the AI agent discover:
 #   - Which subsystems exist and what files belong to each
 #   - Which context documents are relevant to a given task
