@@ -1,12 +1,12 @@
 # Codified Context: Infrastructure for AI Agents in a Complex Codebase
 
-A three-tier architecture for organizing project knowledge so AI coding agents maintain coherence across sessions, follow conventions, and avoid repeating mistakes.
+A *codified context infrastructure* — structured, machine-readable project knowledge that AI coding agents depend on to maintain coherence across sessions, follow conventions, and avoid repeating mistakes.
 
 Companion repository to: *"Codified Context: Infrastructure for AI Agents in a Complex Codebase"* by Aris Vasilopoulos ([arXiv, forthcoming](#links)).
 
 ## The Problem
 
-LLM-based coding agents start each session with a blank slate. On large projects they:
+LLM-based coding agents lack persistent memory: each session begins without awareness of prior sessions, established conventions, or past mistakes. Single-file manifests (`.cursorrules`, `CLAUDE.md`) help with small projects, but they do not scale beyond modest codebases — a 1,000-line prototype can be fully described in a single prompt, but a 100,000-line system cannot. Without structured knowledge transfer, agents on large projects:
 - Forget architectural conventions and repeat known mistakes
 - Lose context about subsystem interactions across files
 - Require lengthy re-explanations of project structure
@@ -43,11 +43,11 @@ LLM-based coding agents start each session with a blank slate. On large projects
 └─────────────────────────────────────────────────────────────┘
 ```
 
-**Tier 1** is loaded into every agent session automatically. It contains project conventions, checklists, and orchestration rules.
+**Tier 1** (hot memory) is loaded into every agent session automatically. It contains project conventions, checklists, and orchestration protocols that route tasks to specialized agents.
 
-**Tier 2** consists of specialized agents with domain expertise, focused prompts, and access to the retrieval service. They are invoked automatically based on trigger conditions in the constitution.
+**Tier 2** consists of specialized agents — domain-expert personas with focused prompts and embedded project knowledge. They are invoked automatically based on trigger conditions in the constitution.
 
-**Tier 3** contains detailed specifications loaded on demand. An MCP retrieval service maps tasks to relevant files, so agents only load what they need.
+**Tier 3** (cold memory) contains detailed specification documents loaded on demand. An MCP retrieval service maps tasks to relevant files, so agents only load what they need.
 
 ## Key Findings (from the Paper)
 
@@ -144,15 +144,17 @@ bash /your-project/.claude/scripts/validate-architecture.sh
 
 ## Design Principles
 
-1. **Written for AI, not humans.** Context documents use tables, code blocks, and explicit patterns rather than prose. Agents parse structured content more reliably than natural language descriptions.
+1. **Documentation as infrastructure.** Context documents are load-bearing artifacts that AI agents depend on to produce correct output — living specifications, not passive reference material. When a specification goes stale, agents generate code based on outdated information.
 
-2. **Tiered loading.** Hot memory (constitution) is always present. Cold memory (specs) is loaded on demand via MCP retrieval. This keeps token usage efficient while making deep context available.
+2. **Written for AI, not humans.** Context documents use tables, code blocks, and explicit patterns rather than prose. Agents parse structured content more reliably than natural language descriptions.
 
-3. **Cross-referenced and validated.** The constitution references context docs, context docs reference source files, and the MCP server indexes both. A validation script checks all cross-references on every session start.
+3. **Hot/cold memory separation.** The constitution (hot memory) is always present. Specifications (cold memory) are loaded on demand via MCP retrieval. This keeps token usage efficient while making deep context available when needed.
 
-4. **Iteratively grown, not designed upfront.** The architecture emerged from real development needs. Documents were created when agents made mistakes, not as a planning exercise. Start small and add context as patterns emerge.
+4. **Cross-referenced and validated.** The constitution references context docs, context docs reference source files, and the MCP server indexes both. A validation script checks all cross-references on every session start.
 
-5. **Agents as domain experts.** Specialized agents carry focused prompts and are invoked automatically by trigger conditions. A code reviewer is invoked after every system modification; a network specialist is invoked for any sync-related work.
+5. **Iteratively grown, not designed upfront.** The infrastructure emerged from real development needs. Documents were created when agents made mistakes, not as a planning exercise. Start small and add context as patterns emerge.
+
+6. **Agents as domain experts.** Specialized agents carry focused prompts and embedded domain knowledge, invoked automatically by trigger conditions. A code reviewer is invoked after every system modification; a network specialist is invoked for any sync-related work.
 
 ## Links
 

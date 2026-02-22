@@ -16,7 +16,7 @@ LLM-based agentic coding assistants lack persistent memory: they lose coherence 
 
 - **arXiv:** *(forthcoming)*
 - **Zenodo:** *(DOI forthcoming)*
-- **Companion Repository:** [github.com/arisvas4/codified-context-architecture](https://github.com/arisvas4/codified-context-architecture)
+- **Companion Repository:** [github.com/arisvas4/codified-context-infrastructure](https://github.com/arisvas4/codified-context-infrastructure)
 
 ## Citation
 

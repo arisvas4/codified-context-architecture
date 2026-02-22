@@ -1,6 +1,6 @@
 # Quickstart: Codified Context Factory Agents
 
-Three standalone agents that set up the **codified context architecture** from scratch. Download this folder, copy the agents into your project, and let your AI assistant do the rest.
+Three standalone agents that set up the **codified context infrastructure** from scratch. Download this folder, copy the agents into your project, and let your AI assistant do the rest.
 
 ## Quick Start (For Humans)
 
@@ -22,7 +22,7 @@ These agents implement the architecture described in "Codified Context: Infrastr
 
 > **Tip:** The fastest way to get started is to paste this to your AI assistant:
 >
-> *"Read the bootstrap README and help me set up the codified context architecture for this project."*
+> *"Read the bootstrap README and help me set up the codified context infrastructure for this project."*
 
 The AI will handle the rest — reading the factory specs, asking you the right questions, and generating your project's knowledge infrastructure.
 

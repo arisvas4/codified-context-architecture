@@ -7,8 +7,8 @@
 > **Section ordering matters.** The constitution is organized from most architecturally
 > significant (agent orchestration, context retrieval, subsystem mapping) to most
 > conventional (build commands, file references). This ordering reflects our finding
-> that the agent orchestration layer and structured context retrieval are the primary
-> differentiators of the codified context architecture — without them, CLAUDE.md is
+> that the agent orchestration tier and structured context retrieval are the primary
+> differentiators of the codified context infrastructure — without them, CLAUDE.md is
 > just another README.
 
 ---
@@ -40,7 +40,7 @@
      TIER 2: AGENT ORCHESTRATION (highest architectural novelty)
 
      This section defines WHEN specialized agents are invoked. In the
-     codified context architecture, this is the primary mechanism for
+     codified context infrastructure, this is the primary mechanism for
      injecting domain expertise — each agent carries its own knowledge
      base in its AGENT.md spec. The trigger table is the "routing layer"
      that connects tasks to the right specialist.
