@@ -190,4 +190,4 @@ A typical bootstrapping timeline:
 | Week 2-4 | First 3-5 context docs | When subsystems get complex enough to need specs |
 | Ongoing | New agents + docs as needed | When new domains emerge or failure modes repeat |
 
-The knowledge-to-code ratio typically grows from ~10% early on to ~20% at maturity. This is not documentation overhead — it is infrastructure that prevents bugs and accelerates development.
+The knowledge-to-code ratio typically grows from ~10% early on to ~20–25% at maturity (the case study in the paper reached ~24%). This is not documentation overhead — it is infrastructure that prevents bugs and accelerates development.

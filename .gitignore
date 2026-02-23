@@ -16,5 +16,9 @@ Thumbs.db
 *.swp
 *.swo
 
+# LaTeX artifacts
+texput.log
+
 # Manuscript (local working copy, not distributed with repo)
 Manuscript/
+.claude

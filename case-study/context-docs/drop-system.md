@@ -365,13 +365,13 @@ var itemLevelMultiplier = 1f + (ItemLevel - 1) * 0.1f;
 
 | File | Purpose |
 |------|---------|
-| [ItemDropComponent.cs](../../TrialOfFive.MonoGame/src/TrialOfFive.Engine/ECS/Components/Combat/ItemDropComponent.cs) | Unified drop component with DropType discriminator |
-| [ItemDropMessages.cs](../../TrialOfFive.MonoGame/src/TrialOfFive.Engine/Network/Messages/ItemDropMessages.cs) | Network messages (ItemDrop, ItemPickupRequest, etc.) |
-| [ItemPickupSystem.cs](../../TrialOfFive.MonoGame/src/TrialOfFive.Engine/ECS/Systems/ItemPickupSystem.cs) | Pickup collision, network validation, inventory addition |
-| [CombatSystem.cs](../../TrialOfFive.MonoGame/src/TrialOfFive.Engine/ECS/Systems/CombatSystem.cs) | `RollDrops()`, `SpawnDropBatch()`, `TrySpawnItemDrop()`, `HandleActBossRewards()` |
-| [EntityFactory.cs](../../TrialOfFive.MonoGame/src/TrialOfFive.Engine/ECS/Archetypes/EntityFactory.cs) | `CreateItemDrop()`, `CreateOrbDrop()`, `CreateModDrop()`, `CreateForgedCoreDrop()` |
-| [CoreDefinitions.cs](../../TrialOfFive.MonoGame/src/TrialOfFive.Engine/Core/CoreDefinitions.cs) | Drop rates, rarity weights, item level ranges |
-| [SaveService.cs](../../TrialOfFive.MonoGame/src/TrialOfFive.Engine/Services/Implementation/SaveService.cs) | `AddCore()`, `AddOrb()`, `AddMod()` |
+| [ItemDropComponent.cs](../../GameProject/src/GameProject.Engine/ECS/Components/Combat/ItemDropComponent.cs) | Unified drop component with DropType discriminator |
+| [ItemDropMessages.cs](../../GameProject/src/GameProject.Engine/Network/Messages/ItemDropMessages.cs) | Network messages (ItemDrop, ItemPickupRequest, etc.) |
+| [ItemPickupSystem.cs](../../GameProject/src/GameProject.Engine/ECS/Systems/ItemPickupSystem.cs) | Pickup collision, network validation, inventory addition |
+| [CombatSystem.cs](../../GameProject/src/GameProject.Engine/ECS/Systems/CombatSystem.cs) | `RollDrops()`, `SpawnDropBatch()`, `TrySpawnItemDrop()`, `HandleActBossRewards()` |
+| [EntityFactory.cs](../../GameProject/src/GameProject.Engine/ECS/Archetypes/EntityFactory.cs) | `CreateItemDrop()`, `CreateOrbDrop()`, `CreateModDrop()`, `CreateForgedCoreDrop()` |
+| [CoreDefinitions.cs](../../GameProject/src/GameProject.Engine/Core/CoreDefinitions.cs) | Drop rates, rarity weights, item level ranges |
+| [SaveService.cs](../../GameProject/src/GameProject.Engine/Services/Implementation/SaveService.cs) | `AddCore()`, `AddOrb()`, `AddMod()` |
 
 ### Legacy Files (Deprecated)
 

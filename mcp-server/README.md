@@ -148,7 +148,7 @@ CONTEXT_DIR = PROJECT_ROOT / ".claude" / "context"   # Where context docs live
 
 3. **The tool functions are generic** — they operate on whatever data is in SUBSYSTEMS/AGENTS. You shouldn't need to modify the `@mcp.tool` implementations.
 
-4. **Keep the index accurate** — When you add/rename/delete source files, update the SUBSYSTEMS dict. The `validate-architecture.sh` script (in `framework/scripts/`) automates checking for stale references.
+4. **Keep the index accurate** — When you add/rename/delete source files, update the SUBSYSTEMS dict. The `validate-architecture.sh` script (in `case-study/scripts/`) automates checking for stale references.
 
 ## How It Fits in the Architecture
 

@@ -34,12 +34,13 @@ LLM-based coding agents lack persistent memory: each session begins without awar
 ├─────────────────────────────────────────────────────────────┤
 │  Tier 3: KNOWLEDGE BASE + RETRIEVAL (Cold Memory)           │
 │  ┌──────────────────────┐  ┌──────────────────────────┐    │
-│  │ .claude/context/*.md │  │ MCP Retrieval Service    │    │
-│  │ • Subsystem specs    │  │ • list_subsystems()      │    │
-│  │ • Architecture docs  │  │ • find_relevant_context() │    │
-│  │ • Protocol docs      │  │ • search_context_docs()   │    │
-│  │ • Pattern guides     │  │ • get_files_for_subsystem()│   │
-│  └──────────────────────┘  └──────────────────────────┘    │
+│  │ .claude/context/*.md │  │ MCP Retrieval Service     │    │
+│  │ • Subsystem specs    │  │ • list_subsystems()       │    │
+│  │ • Architecture docs  │  │ • find_relevant_context()  │    │
+│  │ • Protocol docs      │  │ • search_context_docs()    │    │
+│  │ • Pattern guides     │  │ • suggest_agent()          │    │
+│  │                      │  │ • + 3 more (see mcp-server)│    │
+│  └──────────────────────┘  └────────────────────────────┘   │
 └─────────────────────────────────────────────────────────────┘
 ```
 
@@ -57,6 +58,19 @@ LLM-based coding agents lack persistent memory: each session begins without awar
 | Context infrastructure | ~26,000 lines across constitution + 34 specs + 19 agents |
 | Agent amplification | 2,801 prompts → 1,197 agent invocations → 16,522 agent turns |
 
+## Paper-to-Repo Mapping
+
+| Paper Section | Repo Directory |
+|---------------|----------------|
+| §3.1 Constitution | `case-study/CLAUDE.md` |
+| §3.2 Specialized Agents | `case-study/agent-specs/` |
+| §3.3 Knowledge Base & MCP | `case-study/context-docs/`, `mcp-server/` |
+| §4.2–4.3 Evaluation Metrics | `data/` (scripts, methodology, sample data) |
+| §4.4 Case Studies | `data/case-study-excerpts/` |
+| §5.1 Factory Agents | `quickstart/` |
+| §5.2 Drift Detector | `case-study/scripts/context-drift-check.py` |
+| Appendix B (coordinate-wizard) | `case-study/agent-specs/coordinate-wizard.md` |
+
 ## Repository Structure
 
 ```
@@ -66,22 +80,17 @@ quickstart/             Factory agents to bootstrap the architecture
   context-factory/            Generate context base documents
   README.md                   Setup guide
 
-framework/              Generic templates to build your own architecture
-  constitution-template.md    Annotated CLAUDE.md skeleton
-  context-docs/               Example context base documents
-  agent-specs/                Example agent specifications
-  scripts/                    Validation and staleness detection
-
 mcp-server/             MCP retrieval service (Tier 3 implementation)
-  server.py                   All 6 tools with example subsystems
+  server.py                   All 7 tools with example subsystems
   pyproject.toml              Package configuration
   README.md                   Setup instructions
 
 case-study/             Real artifacts from the paper's case study project
   CLAUDE.md                   The actual constitution (~660 lines, sanitized)
-  context-docs/               Real knowledge base documents
-  agent-specs/                4 real agent specifications
+  context-docs/               5 representative knowledge base documents
+  agent-specs/                5 real agent specifications
   mcp-server/                 The full MCP server
+  scripts/                    Validation and drift detection
 
 data/                   Interaction data and analysis
   extract_prompts.py          Prompt extraction from Claude Code JSONL
@@ -92,55 +101,34 @@ data/                   Interaction data and analysis
 paper/                  Paper reference, abstract, and citation
 ```
 
+> **Note:** The `case-study/` directory mirrors what would live under `.claude/` in a real project. The recommended production layout is `.claude/agents/{id}/AGENT.md` for agent specs and `.claude/context/{topic}.md` for knowledge base documents.
+
 ## Quick Start
 
-### 1. Create Your Constitution
+### Using Factory Agents (Recommended)
 
-Copy and customize `framework/constitution-template.md` → your project's `CLAUDE.md`:
-
-```bash
-cp framework/constitution-template.md /your-project/CLAUDE.md
-# Edit sections: Tech Stack, Build Commands, Architecture, Conventions
-```
-
-### 2. Write Context Documents
-
-For each major subsystem, create a spec in `.claude/context/`:
+Copy the three factory agents into your project and let your AI assistant bootstrap the infrastructure:
 
 ```bash
-mkdir -p /your-project/.claude/context
-cp framework/context-docs/example-save-system.md /your-project/.claude/context/save-system.md
-# Edit to match your project's actual architecture
+cp -r quickstart/constitution-factory quickstart/agent-factory quickstart/context-factory \
+  /your-project/.claude/agents/
 ```
 
-### 3. Set Up MCP Retrieval
+Then tell your AI assistant:
 
-Install the MCP server for on-demand context loading:
+> *"Read the quickstart README at `.claude/agents/constitution-factory/AGENT.md` and help me set up the codified context infrastructure for this project."*
 
-```bash
-cp -r mcp-server/ /your-project/MCP/context_mcp/
-# Edit SUBSYSTEMS dict in server.py to match your project
-# Add to .claude/settings.json:
-# { "mcpServers": { "context": { "command": "python", "args": ["-m", "MCP.context_mcp"] } } }
-```
+The factories ask 3 questions each and generate tailored artifacts. Start with the constitution factory — see `quickstart/README.md` for the full bootstrapping sequence.
 
-### 4. Add Specialized Agents
+### Manual Setup
 
-Create agent specifications in `.claude/agents/`:
+If you prefer to set things up by hand, use the `case-study/` directory as a reference:
 
-```bash
-mkdir -p /your-project/.claude/agents/code-reviewer
-cp framework/agent-specs/example-code-reviewer.md /your-project/.claude/agents/code-reviewer/AGENT.md
-```
-
-### 5. Validate Cross-References
-
-Run the validation script to check that all three tiers reference each other correctly:
-
-```bash
-cp framework/scripts/validate-architecture.sh /your-project/.claude/scripts/
-bash /your-project/.claude/scripts/validate-architecture.sh
-```
+1. **Constitution** — Use `case-study/CLAUDE.md` as a starting point for your own `CLAUDE.md`
+2. **Context documents** — Create `.claude/context/{topic}.md` files following the format in `case-study/context-docs/`
+3. **Agent specs** — Create `.claude/agents/{id}/AGENT.md` files following the format in `case-study/agent-specs/`
+4. **MCP server** — Copy and adapt `mcp-server/` for on-demand context retrieval (see `mcp-server/README.md`)
+5. **Drift detection** — Copy `case-study/scripts/context-drift-check.py` to detect stale specifications
 
 ## Design Principles
 
