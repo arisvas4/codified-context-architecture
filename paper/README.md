@@ -14,7 +14,7 @@ LLM-based agentic coding assistants lack persistent memory: they lose coherence 
 
 ## Links
 
-- **arXiv:** *(forthcoming)*
+- **arXiv:** [arXiv:2602.20478](https://arxiv.org/abs/2602.20478)
 - **Zenodo:** *(DOI forthcoming)*
 - **Companion Repository:** [github.com/arisvas4/codified-context-infrastructure](https://github.com/arisvas4/codified-context-infrastructure)
 
@@ -24,8 +24,9 @@ LLM-based agentic coding assistants lack persistent memory: they lose coherence 
 @article{vasilopoulos2026codified,
   title={Codified Context: Infrastructure for AI Agents in a Complex Codebase},
   author={Vasilopoulos, Aris},
-  journal={arXiv preprint},
-  year={2026}
+  journal={arXiv preprint arXiv:2602.20478},
+  year={2026},
+  url={https://arxiv.org/abs/2602.20478}
 }
 ```
 

@@ -2,7 +2,7 @@
 
 A *codified context infrastructure* — structured, machine-readable project knowledge that AI coding agents depend on to maintain coherence across sessions, follow conventions, and avoid repeating mistakes.
 
-Companion repository to: *"Codified Context: Infrastructure for AI Agents in a Complex Codebase"* by Aris Vasilopoulos ([arXiv, forthcoming](#links)).
+Companion repository to: *"Codified Context: Infrastructure for AI Agents in a Complex Codebase"* by Aris Vasilopoulos ([arXiv:2602.20478](https://arxiv.org/abs/2602.20478)).
 
 ## The Problem
 
@@ -146,7 +146,7 @@ If you prefer to set things up by hand, use the `case-study/` directory as a ref
 
 ## Links
 
-- **Paper:** arXiv *(forthcoming)*
+- **Paper:** [arXiv:2602.20478](https://arxiv.org/abs/2602.20478)
 - **Author:** [Aris Vasilopoulos](https://github.com/arisvas4)
 
 ## License
