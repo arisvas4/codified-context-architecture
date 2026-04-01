@@ -148,7 +148,9 @@ Specialized agents in `.claude/agents/`. **Invoke agents proactively.**
 
 ## Context Retrieval MCP Server (if MCP tools exist)
 
-Use context-retrieval MCP tools FIRST when exploring unfamiliar code.
+Use context-retrieval MCP tools FIRST when exploring unfamiliar code - faster than manual searching.
+
+**IMPORTANT:** Always call `find_relevant_context()` or `list_subsystems()` before using grep/glob to search the codebase. The MCP server knows the project architecture and returns targeted results.
 
 | Tool | Use For |
 |------|---------|
@@ -157,6 +159,7 @@ Use context-retrieval MCP tools FIRST when exploring unfamiliar code.
 | `find_relevant_context("{task}")` | Find files for a task |
 | `search_context_documents("{keyword}")` | Search architecture docs |
 | `suggest_agent("{task}")` | Get recommended agent |
+| `list_agents()` | See all available agents with triggers |
 
 ### Subsystem Reference
 
@@ -329,33 +332,24 @@ Flexible template — universal sections only, domain sections inferred from cod
 
 ## MCP Infrastructure Bootstrapping
 
-When creating a constitution for an **active or mature project** that doesn't yet have context-retrieval MCP infrastructure, offer to scaffold the discovery layer.
+The context-retrieval MCP server is **core infrastructure** for active and mature projects — it enables on-demand architecture discovery that keeps agents fast and accurate. Without it, agents must manually search the codebase instead of querying a structured index.
+
+When creating a constitution for an active or mature project that doesn't yet have MCP infrastructure, recommend setting it up.
 
 ### Detection
 
 - `.mcp.json` exists → MCP already set up, just create CLAUDE.md
-- No `.mcp.json` but Q2 = active/mature → ask: "Should I also set up the context-retrieval MCP server for agent/context discovery?"
-- Q2 = greenfield → skip MCP scaffolding (too early)
+- No `.mcp.json` but Q2 = active/mature → recommend: "I recommend setting up the context-retrieval MCP server for on-demand architecture discovery. This enables agents to find relevant files and docs instantly instead of manually searching. Shall I scaffold it now?"
+- Q2 = greenfield → skip MCP scaffolding (too early — revisit once enough code exists to index)
 
 ### What to Scaffold
 
-**1. `.mcp.json`** at project root:
-```json
-{
-  "mcpServers": {
-    "context-retrieval": {
-      "command": "{path-to-venv}/python3",
-      "args": ["-m", "MCP.context_retrieval_mcp"],
-      "env": { "PYTHONPATH": "{project-root}" }
-    }
-  }
-}
-```
+**1. MCP server directory** — Use the template from the companion repo's `quickstart/mcp-server/` as a starting point. Copy it into the project (e.g., as `mcp-server/` at project root) and customize:
+- `server.py`: Update `PROJECT_ROOT`, `SOURCE_ROOT`, `CONTEXT_DIR` path variables
+- `SUBSYSTEMS` dict: Populate with entries discovered during codebase exploration
+- `AGENTS` dict: Populate with entries from `.claude/agents/` (empty if no agents yet)
 
-**2. `MCP/context_retrieval_mcp/server.py`** — FastMCP server with:
-- `SUBSYSTEMS` dict: one entry per major module/directory discovered during exploration
-- `AGENTS` dict: one entry per agent in `.claude/agents/` (empty if no agents yet)
-- 7 tool functions (these are generic and project-agnostic):
+The template includes all 7 tool functions (project-agnostic — no modifications needed):
 
 | Tool | Purpose |
 |------|---------|
@@ -367,10 +361,21 @@ When creating a constitution for an **active or mature project** that doesn't ye
 | `suggest_agent(task_description)` | Match task → recommended agent via trigger keywords |
 | `list_agents()` | Return all agents with descriptions and models |
 
-**3. Supporting files:**
-- `MCP/context_retrieval_mcp/pyproject.toml` — Python package config (requires `mcp>=1.0.0`)
-- `MCP/context_retrieval_mcp/__init__.py` — Package init
-- `MCP/context_retrieval_mcp/__main__.py` — Entry point
+**2. Install and register:**
+```bash
+cd mcp-server && pip install -e .
+```
+
+**3. `.mcp.json`** at project root:
+```json
+{
+  "mcpServers": {
+    "context-retrieval": {
+      "command": "context-retrieval-mcp"
+    }
+  }
+}
+```
 
 **4. Directory stubs:**
 - `.claude/context/` — ready for context docs

@@ -54,7 +54,7 @@ After these 3 answers, you determine:
 - **Relevant source files**: Discovered via `find_relevant_context()`, `get_files_for_subsystem()`, and grepping
 - **Related context docs**: Found by searching existing `.claude/context/` files
 - **Content type**: Inferred from the domain (system doc, content definition, network protocol, visual spec, or blueprint)
-- **Subsystem registration**: Which SUBSYSTEMS entries in `MCP/context_retrieval_mcp/server.py` should reference this doc
+- **Subsystem registration**: Which SUBSYSTEMS entries in the project's MCP server `server.py` should reference this doc
 - **CLAUDE.md updates**: Only needed if this is a genuinely new subsystem not yet documented
 
 ---
@@ -254,7 +254,7 @@ After generating the context doc, update all registration points.
 
 ### 2. Update MCP server SUBSYSTEMS dict
 
-File: Your MCP server's SUBSYSTEMS dict (e.g., `MCP/context_retrieval_mcp/server.py`)
+File: Your MCP server's SUBSYSTEMS dict (e.g., `mcp-server/server.py`)
 
 Find the most relevant existing subsystem(s) and add the context doc path to their `"files"` list:
 ```python
