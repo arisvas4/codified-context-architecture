@@ -1,0 +1,15 @@
+[project]
+name = "context-retrieval-mcp"
+version = "0.1.0"  # TODO: Update version for your project
+description = "Context discovery MCP server for project architecture retrieval"
+requires-python = ">=3.10"
+dependencies = [
+    "mcp>=1.0.0",
+]
+
+[project.scripts]
+context-retrieval-mcp = "context_retrieval_mcp:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
