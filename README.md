@@ -74,10 +74,11 @@ LLM-based coding agents lack persistent memory: each session begins without awar
 ## Repository Structure
 
 ```
-quickstart/             Factory agents to bootstrap the architecture
+quickstart/             Factory agents and MCP template to bootstrap the architecture
   constitution-factory/       Generate a constitution for any project
   agent-factory/              Generate specialized agents
   context-factory/            Generate context base documents
+  mcp-server/                 Clean MCP server template (copy and customize)
   README.md                   Setup guide
 
 mcp-server/             MCP retrieval service (Tier 3 implementation)
