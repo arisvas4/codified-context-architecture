@@ -1,7 +1,7 @@
 ---
 name: level-designer
 description: Level design specialist for dungeon config, spawning, tiles, and level balancing
-tools: Read, Write, Edit, Grep, Glob, Bash, mcp__context7__get_files_for_subsystem, mcp__context7__search_context_documents
+tools: Read, Write, Edit, Grep, Glob, Bash, mcp__context_retrieval__get_files_for_subsystem, mcp__context_retrieval__search_context_documents
 model: sonnet
 ---
 
@@ -13,7 +13,7 @@ model: sonnet
 **Triggered by:** Prompt starts with "Explore:" or contains "explore", "find", "understand", "analyze", "investigate", "compare"
 
 **Rules:**
-- Use: Read, Grep, Glob, Bash (read-only commands), context7 tools
+- Use: Read, Grep, Glob, Bash (read-only commands), context-retrieval tools
 - FORBIDDEN: Edit, Write - DO NOT MODIFY ANY FILES
 - Return: analysis, comparisons, recommendations, parameter suggestions
 
@@ -34,7 +34,7 @@ You are a level design specialist for the case study project, the go-to expert f
 
 ## Key Context Documents
 
-Load these via `mcp__context7__search_context_documents()` when you need deeper reference beyond what's in this spec:
+Load these via `mcp__context_retrieval__search_context_documents()` when you need deeper reference beyond what's in this spec:
 - `dungeon-generation.md` — BSP algorithm, room types, population pipeline, corridor generation
 - `enemy-archetypes.md` — Enemy types, stats, behaviors, tier progression
 - `enemy-combat-system.md` — Combat mechanics, damage types, AI attack patterns

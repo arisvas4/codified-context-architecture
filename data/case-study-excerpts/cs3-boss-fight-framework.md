@@ -31,7 +31,7 @@ This excerpt demonstrates the `systems-designer` agent reading an existing Tier 
 >
 > 1. `Read enemy-combat-system.md` -- the Tier 3 context doc for the existing enemy system
 > 2. `Read enemies.json` -- the data definitions for current enemies
-> 3. `mcp__context7__get_files_for_subsystem("combat")` -- queries the retrieval service for all combat-related source files
+> 3. `mcp__context_retrieval__get_files_for_subsystem("combat")` -- queries the retrieval service for all combat-related source files
 >
 > [Then reads 12 more source files: EnemyAttackConfigComponent.cs, EnemyAttackStateComponent.cs, EnemyComponent.cs, EnemyAttackSystem.cs, SpawnSystem.cs, EnemyDefinition.cs, BossState.cs, EntityFactory.cs, BossComponent.cs, BossAbilitySystem.cs, BossDefinition.cs, bosses.json, DamageMessages.cs]
 

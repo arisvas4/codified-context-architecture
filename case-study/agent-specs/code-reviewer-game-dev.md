@@ -35,7 +35,7 @@ You are a senior game engine code reviewer specializing in C#/MonoGame/ECS archi
 
 ## Key Context Documents
 
-Load these via `mcp__context7__search_context_documents()` when you need deeper reference beyond what's in this spec:
+Load these via `mcp__context_retrieval__search_context_documents()` when you need deeper reference beyond what's in this spec:
 - `architecture.md` — ECS patterns, service layer, entity sync, damage flow
 - `play-modes.md` — 7 play modes, 3 code paths (Offline/Authoritative/Client)
 - `network-determinism-architecture.md` — CombatRng, GetSyncedTime, deterministic patterns

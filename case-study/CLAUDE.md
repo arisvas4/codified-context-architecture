@@ -31,7 +31,7 @@ GameProject/
 └── Art/                         # Source art assets
 
 MCP/
-└── context7_mcp/               # MCP server for architecture context
+└── context_retrieval_mcp/               # MCP server for architecture context
 
 .claude/context/                # Architecture documentation
 ```
@@ -306,9 +306,9 @@ Key args: `--host [port]`, `--join <ip:port>`, `--auto-ready`, `--auto-start`, `
 
 See `.claude/context/play-modes.md` for mode table, code patterns, and helper methods. See `.claude/context/play-mode-testing.md` for testing guide.
 
-## Context7 MCP Server
+## Context Retrieval MCP Server
 
-Use context7 MCP tools FIRST when exploring unfamiliar code - faster than manual searching.
+Use context-retrieval MCP tools FIRST when exploring unfamiliar code - faster than manual searching.
 
 | Tool | Use For |
 |------|---------|
@@ -595,7 +595,7 @@ Damage is categorized by type, each reduced by a different stat:
 After structural changes (new systems, new message types, changed architectural patterns, new services), consider updating:
 
 - [ ] **Code Review** - Invoke `code-reviewer-game-dev` if you modified `ECS/Systems/`, `Network/`, or physics/collision code
-- [ ] **Context Docs** - Update `.claude/context/*.md` if you changed how a subsystem works (not just fixed a bug in it). Use `mcp__context7__get_files_for_subsystem()` to find which docs map to your files
+- [ ] **Context Docs** - Update `.claude/context/*.md` if you changed how a subsystem works (not just fixed a bug in it). Use `mcp__context_retrieval__get_files_for_subsystem()` to find which docs map to your files
 - [ ] **CLAUDE.md** - Update if you added/removed systems, services, commands, or conventions
 - [ ] **MCP server.py** - Update SUBSYSTEMS dict if you added/renamed/deleted source files listed there
 - [ ] **Agents** - Update agent AGENT.md only if the agent's workflow or referenced patterns changed
@@ -667,7 +667,7 @@ See `.claude/context/network-operations.md` for testing, debugging, and known is
 
 ## Context Documentation
 
-34 detailed docs in `.claude/context/` - use `mcp__context7__get_context_files()` to list all. Key docs:
+34 detailed docs in `.claude/context/` - use `mcp__context_retrieval__get_context_files()` to list all. Key docs:
 
 - `art-pipeline.md` - Meshy, Blender, atlas packing, content loading
 - `coordinate-systems.md` - Isometric rendering, compensation, 5 coordinate spaces

@@ -1,4 +1,4 @@
-# Context7 MCP Server
+# Context Retrieval MCP Server
 
 A context-retrieval MCP (Model Context Protocol) server that implements **Tier 3** of the codified context infrastructure. It gives Claude Code on-demand access to project architecture knowledge without loading everything into the prompt.
 
@@ -28,7 +28,7 @@ The first 5 tools implement **context retrieval** — they let the AI agent find
 │  └──────────────┬───────────────────────┘   │
 │                 │ MCP tool call              │
 │  ┌──────────────▼───────────────────────┐   │
-│  │  Context7 MCP Server                 │   │
+│  │  Context Retrieval MCP Server                 │   │
 │  │  ┌─────────────────────────────────┐ │   │
 │  │  │  SUBSYSTEMS dict (the index)    │ │   │
 │  │  │  - keywords per subsystem       │ │   │
@@ -105,7 +105,7 @@ Add to your project's `.claude/settings.json`:
 ```json
 {
   "mcpServers": {
-    "context7": {
+    "context-retrieval": {
       "command": "python",
       "args": ["-m", "mcp_server"],
       "cwd": "/path/to/your/mcp-server"
@@ -119,8 +119,8 @@ Or if installed as a package:
 ```json
 {
   "mcpServers": {
-    "context7": {
-      "command": "context7-mcp"
+    "context-retrieval": {
+      "command": "context-retrieval-mcp"
     }
   }
 }

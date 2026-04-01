@@ -1,5 +1,5 @@
 """
-Context7 MCP Server
+Context Retrieval MCP Server
 
 Provides context discovery for Claude Code to find relevant
 project architecture and files when starting new tasks.
@@ -19,7 +19,7 @@ ENGINE_ROOT = PROJECT_ROOT / "GameProject" / "src" / "GameProject.Engine"
 CONTEXT_DIR = PROJECT_ROOT / ".claude" / "context"
 
 # Create the FastMCP server
-mcp = FastMCP("Context7")
+mcp = FastMCP("Context Retrieval")
 
 
 # =============================================================================
@@ -456,7 +456,7 @@ SUBSYSTEMS = {
 # MCP Resources
 # =============================================================================
 
-@mcp.resource("context7://architecture")
+@mcp.resource("context-retrieval://architecture")
 def get_full_architecture() -> str:
     """Full architecture overview document."""
     arch_file = CONTEXT_DIR / "architecture.md"
@@ -465,7 +465,7 @@ def get_full_architecture() -> str:
     return "Architecture document not found."
 
 
-@mcp.resource("context7://architecture/ecs")
+@mcp.resource("context-retrieval://architecture/ecs")
 def get_ecs_architecture() -> str:
     """ECS (Entity Component System) architecture details."""
     return """# ECS Architecture
@@ -531,7 +531,7 @@ Priority ordering (lower = earlier):
 """
 
 
-@mcp.resource("context7://architecture/services")
+@mcp.resource("context-retrieval://architecture/services")
 def get_services_architecture() -> str:
     """Service layer and dependency injection architecture."""
     return """# Service Architecture
@@ -572,7 +572,7 @@ def get_services_architecture() -> str:
 """
 
 
-@mcp.resource("context7://architecture/networking")
+@mcp.resource("context-retrieval://architecture/networking")
 def get_networking_architecture() -> str:
     """Networking and multiplayer architecture."""
     return """# Networking Architecture
@@ -643,7 +643,7 @@ Host receives → DamageAuthoritySystem validates → Applies to health.Current
 """
 
 
-@mcp.resource("context7://architecture/game-states")
+@mcp.resource("context-retrieval://architecture/game-states")
 def get_game_states_architecture() -> str:
     """Game state machine architecture."""
     return """# Game States Architecture
@@ -685,7 +685,7 @@ SurvivalState, PayloadState, DefenseState, and BossState are archived pending re
 """
 
 
-@mcp.resource("context7://architecture/file-map")
+@mcp.resource("context-retrieval://architecture/file-map")
 def get_file_map() -> str:
     """Key file locations by subsystem."""
     lines = ["# File Map\n", "Key file locations organized by subsystem.\n"]
@@ -699,7 +699,7 @@ def get_file_map() -> str:
     return "\n".join(lines)
 
 
-@mcp.resource("context7://architecture/dungeon-generation")
+@mcp.resource("context-retrieval://architecture/dungeon-generation")
 def get_dungeon_generation_architecture() -> str:
     """Procedural dungeon generation system documentation."""
     dungeon_file = CONTEXT_DIR / "dungeon-generation.md"
@@ -708,7 +708,7 @@ def get_dungeon_generation_architecture() -> str:
     return "Dungeon generation document not found."
 
 
-@mcp.resource("context7://architecture/tiled-templates")
+@mcp.resource("context-retrieval://architecture/tiled-templates")
 def get_tiled_templates_architecture() -> str:
     """Tiled room templates documentation."""
     return """# Tiled Room Templates
@@ -801,7 +801,7 @@ dungeonGenerator.RoomTemplates.Reload();
 """
 
 
-@mcp.resource("context7://architecture/input-system")
+@mcp.resource("context-retrieval://architecture/input-system")
 def get_input_system_architecture() -> str:
     """Input system architecture with keyboard, mouse, and gamepad support."""
     input_file = CONTEXT_DIR / "input-system.md"
@@ -810,7 +810,7 @@ def get_input_system_architecture() -> str:
     return "Input system document not found."
 
 
-@mcp.resource("context7://architecture/aiming-system")
+@mcp.resource("context-retrieval://architecture/aiming-system")
 def get_aiming_system_architecture() -> str:
     """Aiming system with isometric coordinate transforms, camera timing, and network determinism."""
     aiming_file = CONTEXT_DIR / "aiming-system.md"
@@ -819,7 +819,7 @@ def get_aiming_system_architecture() -> str:
     return "Aiming system document not found."
 
 
-@mcp.resource("context7://architecture/isometric-input")
+@mcp.resource("context-retrieval://architecture/isometric-input")
 def get_isometric_input_architecture() -> str:
     """Isometric input rotation and animation system documentation."""
     return """# Isometric Input Rotation
@@ -926,7 +926,7 @@ Rotation happens in `PollKeyboard()` and `PollGamepad()`, which are called for a
 """
 
 
-@mcp.resource("context7://architecture/dungeon-debug")
+@mcp.resource("context-retrieval://architecture/dungeon-debug")
 def get_dungeon_debug_architecture() -> str:
     """Dungeon debug and export tools documentation."""
     return """# Dungeon Debug & Export Tools
@@ -1031,7 +1031,7 @@ DungeonExportService.ExportMetadata(dungeon, seed, metadataPath);
 
 ## DevTools CLI (External Tool)
 
-For external dungeon preview without running the game, see `context7://architecture/devtools`.
+For external dungeon preview without running the game, see `context-retrieval://architecture/devtools`.
 
 ```bash
 # Quick preview
@@ -1044,7 +1044,7 @@ dotnet run -- dp -s 3536315802 -v
 """
 
 
-@mcp.resource("context7://architecture/devtools")
+@mcp.resource("context-retrieval://architecture/devtools")
 def get_devtools_architecture() -> str:
     """Developer tools CLI documentation."""
     return """# Developer Tools (DevTools)
@@ -1458,7 +1458,7 @@ def find_relevant_context(task_description: str) -> dict:
         "task": task_description,
         "relevant_subsystems": matches[:5],  # Top 5 matches
         "suggested_files": suggested_files[:10],  # Top 10 files
-        "architecture_resource": "context7://architecture",
+        "architecture_resource": "context-retrieval://architecture",
     }
 
 
@@ -1480,25 +1480,25 @@ def get_context_files() -> dict:
         resource_uri = None
         if f.stem == "architecture":
             description = "Core architecture overview (ECS, services, networking, devtools, tiled templates)"
-            resource_uri = "context7://architecture"
+            resource_uri = "context-retrieval://architecture"
         elif f.stem == "dungeon-generation":
             description = "Procedural dungeon generation system (BSP, graph, rooms, corridors)"
-            resource_uri = "context7://architecture/dungeon-generation"
+            resource_uri = "context-retrieval://architecture/dungeon-generation"
         elif f.stem == "tiledlib-api":
             description = "TiledLib.Net 4.0 API reference for loading .tmx/.tsx files"
-            resource_uri = "context7://architecture/tiled-templates"
+            resource_uri = "context-retrieval://architecture/tiled-templates"
         elif f.stem == "coordinate-systems":
             description = "Isometric rendering, coordinate conversion, depth sorting, compensation"
-            resource_uri = "context7://architecture/isometric-input"
+            resource_uri = "context-retrieval://architecture/isometric-input"
         elif f.stem == "input-system":
             description = "Input system with keyboard, mouse, and gamepad support"
-            resource_uri = "context7://architecture/input-system"
+            resource_uri = "context-retrieval://architecture/input-system"
         elif f.stem == "aiming-system":
             description = "Aiming system with isometric coordinate transforms, camera timing, and network determinism"
-            resource_uri = "context7://architecture/aiming-system"
+            resource_uri = "context-retrieval://architecture/aiming-system"
         elif f.stem == "boss-fight-framework":
             description = "Multi-phase boss fights with attack pools, minions, enrage, vulnerability, shield mechanics, and network sync"
-            resource_uri = "context7://architecture/boss-fight-framework"
+            resource_uri = "context-retrieval://architecture/boss-fight-framework"
         elif f.stem == "network-operations":
             description = "Network testing, debugging, and known issues"
         elif f.stem == "art-pipeline":
@@ -1506,7 +1506,7 @@ def get_context_files() -> dict:
         elif f.stem == "item-system":
             description = "Equipment system: Orbs, Mods, Cores, fusion, augment tokens, PowerLevel"
 
-        # Note: dungeon-debug has no .md file but has MCP resource context7://architecture/dungeon-debug
+        # Note: dungeon-debug has no .md file but has MCP resource context-retrieval://architecture/dungeon-debug
 
         files.append({
             "name": f.stem,

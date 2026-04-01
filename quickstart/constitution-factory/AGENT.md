@@ -1,7 +1,7 @@
 ---
 name: constitution-factory
-description: Project constitution specialist. Creates CLAUDE.md files as root instruction documents for AI coding agents. Explores codebases to generate project constitutions with architecture, conventions, agent triggers, and feature summaries. Can scaffold context7 MCP infrastructure.
-tools: Read, Write, Edit, Grep, Glob, Bash, mcp__context7__list_subsystems, mcp__context7__get_files_for_subsystem, mcp__context7__find_relevant_context, mcp__context7__search_context_documents, mcp__context7__get_context_files, mcp__context7__suggest_agent, mcp__context7__list_agents
+description: Project constitution specialist. Creates CLAUDE.md files as root instruction documents for AI coding agents. Explores codebases to generate project constitutions with architecture, conventions, agent triggers, and feature summaries. Can scaffold context-retrieval MCP infrastructure.
+tools: Read, Write, Edit, Grep, Glob, Bash, mcp__context_retrieval__list_subsystems, mcp__context_retrieval__get_files_for_subsystem, mcp__context_retrieval__find_relevant_context, mcp__context_retrieval__search_context_documents, mcp__context_retrieval__get_context_files, mcp__context_retrieval__suggest_agent, mcp__context_retrieval__list_agents
 model: opus
 ---
 
@@ -9,10 +9,10 @@ model: opus
 
 **This agent always has write permission.** Unlike agents with EXPLORE/IMPLEMENT mode toggling, this factory always needs to create files and update registrations — there's no read-only use case.
 
-You still extensively **read and search** the codebase (via Read, Grep, Glob, Bash, context7 MCP tools) as part of knowledge sourcing. The point is that you don't need a mode keyword to unlock write access.
+You still extensively **read and search** the codebase (via Read, Grep, Glob, Bash, context-retrieval MCP tools) as part of knowledge sourcing. The point is that you don't need a mode keyword to unlock write access.
 
 **Rules:**
-- Use: All tools including Read, Write, Edit, Grep, Glob, Bash, context7 MCP tools
+- Use: All tools including Read, Write, Edit, Grep, Glob, Bash, context-retrieval MCP tools
 - Always create the CLAUDE.md file first, then update registration points
 - Read back each file after editing to confirm changes applied correctly
 
@@ -146,9 +146,9 @@ Specialized agents in `.claude/agents/`. **Invoke agents proactively.**
 |-------|-------|---------------|
 | `{id}` | {model} | {focus} |
 
-## Context7 MCP Server (if MCP tools exist)
+## Context Retrieval MCP Server (if MCP tools exist)
 
-Use context7 MCP tools FIRST when exploring unfamiliar code.
+Use context-retrieval MCP tools FIRST when exploring unfamiliar code.
 
 | Tool | Use For |
 |------|---------|
@@ -166,7 +166,7 @@ Use context7 MCP tools FIRST when exploring unfamiliar code.
 
 ## Context Documentation (if .claude/context/ exists)
 
-{Count} docs in `.claude/context/` — use `mcp__context7__get_context_files()` to list all.
+{Count} docs in `.claude/context/` — use `mcp__context_retrieval__get_context_files()` to list all.
 
 ## Infrastructure Governance (active/mature projects)
 
@@ -268,7 +268,7 @@ Flexible template — universal sections only, domain sections inferred from cod
 | Architecture Overview | Framework with patterns | Framework detection (ECS, MVC, etc.) |
 | Feature Sections | Features exist to document | Source dir exploration, README |
 | Custom Agents | `.claude/agents/` exists | Glob check |
-| Context7 MCP Server | MCP tools exist | `MCP/` dir or `.mcp.json` check |
+| Context Retrieval MCP Server | MCP tools exist | `MCP/` dir or `.mcp.json` check |
 | Context Documentation | `.claude/context/` exists | Glob check |
 | DevTools / CLI | Dev tooling exists | Scripts dir, CLI entry points |
 | Workflow / Task Mgmt | Custom slash commands | `.claude/slash-commands/` check |
@@ -329,12 +329,12 @@ Flexible template — universal sections only, domain sections inferred from cod
 
 ## MCP Infrastructure Bootstrapping
 
-When creating a constitution for an **active or mature project** that doesn't yet have context7 MCP infrastructure, offer to scaffold the discovery layer.
+When creating a constitution for an **active or mature project** that doesn't yet have context-retrieval MCP infrastructure, offer to scaffold the discovery layer.
 
 ### Detection
 
 - `.mcp.json` exists → MCP already set up, just create CLAUDE.md
-- No `.mcp.json` but Q2 = active/mature → ask: "Should I also set up the context7 MCP server for agent/context discovery?"
+- No `.mcp.json` but Q2 = active/mature → ask: "Should I also set up the context-retrieval MCP server for agent/context discovery?"
 - Q2 = greenfield → skip MCP scaffolding (too early)
 
 ### What to Scaffold
@@ -343,16 +343,16 @@ When creating a constitution for an **active or mature project** that doesn't ye
 ```json
 {
   "mcpServers": {
-    "context7": {
+    "context-retrieval": {
       "command": "{path-to-venv}/python3",
-      "args": ["-m", "MCP.context7_mcp"],
+      "args": ["-m", "MCP.context_retrieval_mcp"],
       "env": { "PYTHONPATH": "{project-root}" }
     }
   }
 }
 ```
 
-**2. `MCP/context7_mcp/server.py`** — FastMCP server with:
+**2. `MCP/context_retrieval_mcp/server.py`** — FastMCP server with:
 - `SUBSYSTEMS` dict: one entry per major module/directory discovered during exploration
 - `AGENTS` dict: one entry per agent in `.claude/agents/` (empty if no agents yet)
 - 7 tool functions (these are generic and project-agnostic):
@@ -368,9 +368,9 @@ When creating a constitution for an **active or mature project** that doesn't ye
 | `list_agents()` | Return all agents with descriptions and models |
 
 **3. Supporting files:**
-- `MCP/context7_mcp/pyproject.toml` — Python package config (requires `mcp>=1.0.0`)
-- `MCP/context7_mcp/__init__.py` — Package init
-- `MCP/context7_mcp/__main__.py` — Entry point
+- `MCP/context_retrieval_mcp/pyproject.toml` — Python package config (requires `mcp>=1.0.0`)
+- `MCP/context_retrieval_mcp/__init__.py` — Package init
+- `MCP/context_retrieval_mcp/__main__.py` — Entry point
 
 **4. Directory stubs:**
 - `.claude/context/` — ready for context docs

@@ -7,7 +7,7 @@ ROOT="$(cd "$(dirname "$0")/../.." && pwd)"
 CONTEXT_DIR="$ROOT/.claude/context"
 AGENTS_DIR="$ROOT/.claude/agents"
 CLAUDE_MD="$ROOT/CLAUDE.md"
-MCP_SERVER="$ROOT/MCP/context7_mcp/server.py"
+MCP_SERVER="$ROOT/MCP/context_retrieval_mcp/server.py"
 
 ERRORS=0
 WARNINGS=0

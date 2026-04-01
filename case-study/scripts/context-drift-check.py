@@ -436,7 +436,7 @@ def main():
             return
 
         # 1. Parse SUBSYSTEMS mapping
-        server_py = repo_root / "MCP" / "context7_mcp" / "server.py"
+        server_py = repo_root / "MCP" / "context_retrieval_mcp" / "server.py"
         mapping = parse_subsystems(server_py)
 
         # 2. Detect code/doc drift from recent commits

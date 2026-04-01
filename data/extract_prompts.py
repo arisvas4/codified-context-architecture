@@ -57,7 +57,7 @@ CATEGORIES = {
     'gamestate': ['state', 'transition', 'hub', 'survival', 'adventure', 'defense', 'payload', 'boss'],
     # Categories broken out from "other"
     'build': ['dotnet', 'build', 'compile', 'launch', 'run', 'terminal', 'install', 'homebrew', 'npm', 'nuget'],
-    'tooling': ['agent', 'mcp', 'context7', 'claude', 'skill', 'hook'],
+    'tooling': ['agent', 'mcp', 'context-retrieval', 'claude', 'skill', 'hook'],
     'leveldesign': ['ldtk', 'tiled', 'tilemap', 'tileset', 'map editor', 'room template'],
     'refactor': ['refactor', 'cleanup', 'organize', 'rename', 'restructure'],
     'planning': ['plan', 'phase', 'implement', 'approach', 'what is next', 'begin with', 'what is task', 'what is step',

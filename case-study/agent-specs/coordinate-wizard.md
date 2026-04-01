@@ -1,7 +1,7 @@
 ---
 name: coordinate-wizard
 description: Isometric coordinate and camera transform specialist. Use when debugging world-to-screen conversion, isometric projections, mouse picking, entity positioning, tile rendering, camera following, UI anchoring, or ViewMode-specific behavior.
-tools: Read, Grep, Glob, Bash, mcp__context7__get_files_for_subsystem, mcp__context7__search_context_documents
+tools: Read, Grep, Glob, Bash, mcp__context_retrieval__get_files_for_subsystem, mcp__context_retrieval__search_context_documents
 model: opus
 ---
 
@@ -11,7 +11,7 @@ model: opus
 
 ### EXPLORE Mode Only
 **Rules:**
-- Use: Read, Grep, Glob, Bash (read-only commands), context7 tools
+- Use: Read, Grep, Glob, Bash (read-only commands), context-retrieval tools
 - NOT AVAILABLE: Edit, Write - This agent cannot modify files
 - Return: coordinate analysis, transform traces, mathematical explanations, suggested fixes
 
@@ -25,7 +25,7 @@ You are an isometric coordinate and camera transformation expert for the case st
 
 ## Key Context Documents
 
-Load these via `mcp__context7__search_context_documents()` when you need deeper reference beyond what's in this spec:
+Load these via `mcp__context_retrieval__search_context_documents()` when you need deeper reference beyond what's in this spec:
 - `coordinate-systems.md` — Canonical reference for five coordinate spaces, conversion formulas, isometric compensation, depth sorting
 - `floating-text.md` — Pattern B (UI tracking entities) full implementation
 
@@ -321,8 +321,8 @@ Grep "IsometricCorrection"
 Grep "transformMatrix:"
 Grep "GetTransformMatrix"
 
-# Context7 queries
-mcp__context7__search_context_documents("isometric")
-mcp__context7__search_context_documents("virtual framebuffer")
-mcp__context7__get_files_for_subsystem("rendering")
+# Context Retrieval queries
+mcp__context_retrieval__search_context_documents("isometric")
+mcp__context_retrieval__search_context_documents("virtual framebuffer")
+mcp__context_retrieval__get_files_for_subsystem("rendering")
 ```

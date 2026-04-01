@@ -14,8 +14,8 @@ This excerpt demonstrates the architecture's organic growth pattern. When tasked
 > **Assistant** (turn 1):
 > I'll search for information about the drop system and check if there's existing documentation.
 >
-> [Calls `mcp__context7__search_context_documents({"query": "drop system core drops loot"})`]
-> [Calls `mcp__context7__get_files_for_subsystem({"subsystem": "combat"})`]
+> [Calls `mcp__context_retrieval__search_context_documents({"query": "drop system core drops loot"})`]
+> [Calls `mcp__context_retrieval__get_files_for_subsystem({"subsystem": "combat"})`]
 > [Calls `Grep({"pattern": "CoreDrop|DropComponent|LootDrop"})`]
 
 > **MCP tool result** (search_context_documents):

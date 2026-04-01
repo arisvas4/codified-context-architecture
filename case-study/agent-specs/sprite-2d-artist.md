@@ -13,7 +13,7 @@ model: sonnet
 **Triggered by:** Prompt starts with "Explore:" or contains "explore", "find", "understand", "analyze", "investigate", "diagnose"
 
 **Rules:**
-- Use: Read, Grep, Glob, Bash (read-only commands), context7 tools
+- Use: Read, Grep, Glob, Bash (read-only commands), context-retrieval tools
 - FORBIDDEN: Edit, Write - DO NOT MODIFY ANY FILES
 - Return: file paths, code snippets, patterns, architectural notes
 
@@ -35,7 +35,7 @@ You are a 2D game artist assistant specializing in sprite workflows and LDtk lev
 
 ## Key Context Documents
 
-Load these via `mcp__context7__search_context_documents()` when you need deeper reference beyond what's in this spec:
+Load these via `mcp__context_retrieval__search_context_documents()` when you need deeper reference beyond what's in this spec:
 - `art-pipeline.md` — Full asset pipeline (Meshy, Blender, atlas packing, content loading, sprite naming)
 
 ## Key Files

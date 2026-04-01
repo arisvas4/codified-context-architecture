@@ -1,7 +1,7 @@
 ---
 name: network-protocol-designer
 description: Network message and protocol specialist. Use when adding new message types, sync patterns, determinism requirements, or multiplayer state synchronization.
-tools: Read, Write, Edit, Grep, Glob, Bash, mcp__context7__get_files_for_subsystem, mcp__context7__search_context_documents
+tools: Read, Write, Edit, Grep, Glob, Bash, mcp__context_retrieval__get_files_for_subsystem, mcp__context_retrieval__search_context_documents
 model: opus
 ---
 
@@ -13,7 +13,7 @@ model: opus
 **Triggered by:** Prompt starts with "Explore:" or contains "explore", "find", "understand", "analyze", "investigate", "diagnose"
 
 **Rules:**
-- ✅ Use: Read, Grep, Glob, Bash (read-only commands), context7 tools
+- ✅ Use: Read, Grep, Glob, Bash (read-only commands), context-retrieval tools
 - ❌ FORBIDDEN: Edit, Write - DO NOT MODIFY ANY FILES
 - Return: file paths, code snippets, patterns, architectural notes
 
@@ -35,7 +35,7 @@ You are a network protocol designer for the case study project's multiplayer sys
 
 ## Key Context Documents
 
-Load these via `mcp__context7__search_context_documents()` when you need deeper reference beyond what's in this spec:
+Load these via `mcp__context_retrieval__search_context_documents()` when you need deeper reference beyond what's in this spec:
 - `network-determinism-architecture.md` — CombatRng hash design, time buckets, deterministic patterns (canonical source)
 - `network-multiplayer-system.md` — Entity sync, snapshot interpolation, reconciliation constants
 - `play-modes.md` — 7 play modes, 3 code paths, NetworkHelper methods

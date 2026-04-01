@@ -27,7 +27,7 @@ This excerpt demonstrates how a sub-agent, tasked with exploring game state tran
 > **Sub-agent** (exploration phase):
 > I'll explore how game state transitions and player management work across different scenarios. Let me start by getting context about the subsystems and then dive into the specific files.
 >
-> [Calls `mcp__context7__list_subsystems({})`, `mcp__context7__get_files_for_subsystem("game-states")`, `mcp__context7__find_relevant_context("game state transitions...")`]
+> [Calls `mcp__context_retrieval__list_subsystems({})`, `mcp__context_retrieval__get_files_for_subsystem("game-states")`, `mcp__context_retrieval__find_relevant_context("game state transitions...")`]
 >
 > [... reads GameStateManager.cs, PlayMenuState.cs, HubState.cs, AdventureState.cs, VictoryState.cs, PlayerComponent.cs, NetworkService.cs, EntityFactory.cs, LevelStateBase.cs ...]
 >

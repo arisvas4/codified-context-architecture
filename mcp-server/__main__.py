@@ -1,4 +1,4 @@
-"""Entry point for running the Context7 MCP server."""
+"""Entry point for running the Context Retrieval MCP server."""
 
 from .server import main
 

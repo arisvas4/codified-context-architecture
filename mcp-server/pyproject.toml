@@ -1,5 +1,5 @@
 [project]
-name = "context7-mcp"
+name = "context-retrieval-mcp"
 version = "0.1.0"
 description = "Context discovery MCP server for project architecture retrieval"
 requires-python = ">=3.10"
@@ -8,7 +8,7 @@ dependencies = [
 ]
 
 [project.scripts]
-context7-mcp = "context7_mcp:main"
+context-retrieval-mcp = "context_retrieval_mcp:main"
 
 [build-system]
 requires = ["hatchling"]
