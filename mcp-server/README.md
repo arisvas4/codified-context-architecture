@@ -100,21 +100,7 @@ pip install -e .
 
 ### Claude Code Integration
 
-Add to your project's `.claude/settings.json`:
-
-```json
-{
-  "mcpServers": {
-    "context-retrieval": {
-      "command": "python",
-      "args": ["-m", "mcp_server"],
-      "cwd": "/path/to/your/mcp-server"
-    }
-  }
-}
-```
-
-Or if installed as a package:
+Add to your project's `.mcp.json` (at project root):
 
 ```json
 {
@@ -125,6 +111,8 @@ Or if installed as a package:
   }
 }
 ```
+
+This uses the script entry point installed by `pip install -e .`. Alternatively, you can use `python -m` with the `cwd` option pointing to the installed package directory.
 
 ### Path Configuration
 

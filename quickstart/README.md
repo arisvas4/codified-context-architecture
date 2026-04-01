@@ -1,6 +1,6 @@
 # Quickstart: Codified Context Factory Agents
 
-Three standalone agents that set up the **codified context infrastructure** from scratch. Download this folder, copy the agents into your project, and let your AI assistant do the rest.
+Three factory agents and an MCP server template that set up the **codified context infrastructure** from scratch. Download this folder, copy the pieces into your project, and let your AI assistant do the rest.
 
 ## Quick Start (For Humans)
 
@@ -8,17 +8,19 @@ These agents implement the architecture described in "Codified Context: Infrastr
 
 **What they do:**
 
-| Factory | Creates | Tier |
-|---------|---------|-------|
+| Component | Creates | Tier |
+|-----------|---------|-------|
 | `constitution-factory` | Your project's CLAUDE.md (root instruction document loaded every session) | Tier 1: Constitution |
+| `mcp-server` | Context-retrieval MCP server (copy, customize, and install) | Tier 3: Retrieval |
 | `agent-factory` | Specialized domain-expert agents with deep codified knowledge | Tier 2: Agents |
 | `context-factory` | Knowledge base documents in `.claude/context/` | Tier 3: Knowledge Base |
 
-**Setup in 3 steps:**
+**Setup:**
 
-1. Copy the three factory folders into your project's `.claude/agents/` directory
-2. Ask your AI assistant to read this README
-3. Run the `constitution-factory` first — it creates the foundation everything else builds on
+1. Copy the factory folders into your project's `.claude/agents/` directory
+2. Copy `mcp-server/` into your project (for on-demand context retrieval)
+3. Ask your AI assistant to read this README
+4. Run the `constitution-factory` first — it creates the foundation everything else builds on
 
 > **Tip:** The fastest way to get started is to paste this to your AI assistant:
 >
@@ -37,15 +39,21 @@ The AI will handle the rest — reading the factory specs, asking you the right 
 1. Copy the three factory directories into the target project:
    ```
    your-project/
-   └── .claude/agents/
-       ├── constitution-factory/AGENT.md
-       ├── agent-factory/AGENT.md
-       └── context-factory/AGENT.md
+   ├── .claude/agents/
+   │   ├── constitution-factory/AGENT.md
+   │   ├── agent-factory/AGENT.md
+   │   └── context-factory/AGENT.md
+   └── mcp-server/              # Copy from quickstart/mcp-server/
+       ├── server.py
+       ├── pyproject.toml
+       ├── __init__.py
+       └── __main__.py
    ```
 
 2. Verify the files are in place:
    ```bash
    ls .claude/agents/*/AGENT.md
+   ls mcp-server/server.py
    ```
 
 3. The factories are now available as agents. Each factory asks exactly 3 questions before generating anything.
@@ -64,11 +72,43 @@ Invoke `constitution-factory`. It will ask:
 | 2 | How mature is it? | Greenfield / Active / Mature — determines depth |
 | 3 | What should agents prioritize? | Code quality standards and principles |
 
-**Output:** A `CLAUDE.md` file at the project root containing architecture overview, build commands, conventions, key files reference, and (for active/mature projects) infrastructure governance checklists. Optionally scaffolds MCP retrieval infrastructure.
+**Output:** A `CLAUDE.md` file at the project root containing architecture overview, build commands, conventions, key files reference, and (for active/mature projects) infrastructure governance checklists.
 
 **Expected size:** Greenfield 200-400 lines, Active 400-700 lines, Mature 700-1200+ lines.
 
-#### Phase 2: Agents (as domains emerge)
+#### Phase 2: MCP Server (recommended for active/mature projects)
+
+Set up the context-retrieval MCP server for on-demand architecture discovery. This is the retrieval layer that makes Tier 3 (knowledge base) work — without it, agents must manually search the codebase instead of querying an index.
+
+**Prerequisites:** Python 3.10+, `pip install mcp`
+
+**Setup:**
+
+1. Copy `quickstart/mcp-server/` into your project root (or wherever you prefer)
+2. Edit `server.py`: update `PROJECT_ROOT`, `SOURCE_ROOT`, `CONTEXT_DIR` paths for your project layout
+3. Replace placeholder `SUBSYSTEMS` entries with your project's subsystems (the constitution factory can help identify these)
+4. Replace placeholder `AGENTS` entries with your agents (or leave empty if none yet)
+5. Install the package:
+   ```bash
+   cd mcp-server && pip install -e .
+   ```
+6. Create `.mcp.json` at your project root:
+   ```json
+   {
+     "mcpServers": {
+       "context-retrieval": {
+         "command": "context-retrieval-mcp"
+       }
+     }
+   }
+   ```
+7. Restart Claude Code to pick up the MCP server
+
+**Skip this phase** for greenfield projects — come back to it once you have enough code to index.
+
+See `quickstart/mcp-server/README.md` for detailed customization guidance.
+
+#### Phase 3: Agents (as domains emerge)
 
 You do not need to create all agents upfront. Create agents when:
 - A domain has recurring failure modes (the AI keeps making the same category of mistake)
@@ -85,7 +125,7 @@ Invoke `agent-factory`. It will ask:
 
 **Output:** An `AGENT.md` file in `.claude/agents/{agent-id}/`, plus updates to the constitution's trigger tables and MCP registry (if they exist).
 
-#### Phase 3: Knowledge Base (as systems grow)
+#### Phase 4: Knowledge Base (as systems grow)
 
 Create context documents when a subsystem becomes complex enough that its conventions, patterns, and edge cases don't fit in the constitution's breadcrumb summary.
 
@@ -111,7 +151,7 @@ Creates the root instruction document (CLAUDE.md) that AI agents load at the sta
 - Generates feature breadcrumbs (5-10 line summaries with cross-references to detailed docs)
 - Creates agent trigger tables and MCP subsystem references if infrastructure exists
 - Adapts to 5 project domains: Game Dev, Web App, CLI/Library, Data Science/ML, General
-- Optionally scaffolds MCP retrieval server for active/mature projects
+- For active/mature projects, can scaffold MCP retrieval infrastructure (alternatively, use the `quickstart/mcp-server/` template directly — see Phase 2)
 
 #### Agent Factory (`agent-factory`)
 
@@ -150,10 +190,11 @@ Tier 2: Specialized Agents (Domain Specialists)
   deep domain knowledge (~70% domain content, ~30% behavioral rules).
   Files: .claude/agents/{agent-id}/AGENT.md
 
-Tier 3: Knowledge Base (Cold Memory)
-  Retrieved on-demand via MCP or manual loading. Detailed system
-  specifications, API references, tuning constants.
-  Files: .claude/context/{topic}.md
+Tier 3: Knowledge Base + Retrieval (Cold Memory)
+  Retrieved on-demand via MCP server. Detailed system specifications,
+  API references, tuning constants. The MCP server indexes subsystems
+  and routes queries to relevant files and docs.
+  Files: .claude/context/{topic}.md + mcp-server/server.py
 ```
 
 **Key design principles:**
@@ -172,7 +213,7 @@ These factories are written for Claude Code's `.claude/agents/` system, but the 
 | Constitution | `CLAUDE.md` at project root | `.cursorrules`, `.github/copilot-instructions.md`, custom system prompts |
 | Agent specs | `.claude/agents/{id}/AGENT.md` with frontmatter | Custom prompt files, tool configurations, or system prompt templates |
 | Knowledge base | `.claude/context/*.md` + MCP retrieval | RAG pipelines, prompt includes, documentation directories |
-| MCP retrieval | FastMCP server with keyword matching | Embedding-based retrieval, file watchers, IDE plugins |
+| MCP retrieval | FastMCP server with keyword matching (see `quickstart/mcp-server/`) | Embedding-based retrieval, file watchers, IDE plugins |
 
 **To adapt the factories for a different tool:**
 1. Use the constitution factory's output (CLAUDE.md) as a template for your tool's instruction format
@@ -186,6 +227,7 @@ A typical bootstrapping timeline:
 | Phase | What to create | When |
 |-------|---------------|------|
 | Day 1 | Constitution only | Project start — even a general gist helps |
+| Week 1 | MCP server | Once you have enough code to index into subsystems |
 | Week 1-2 | First 1-2 agents | When you notice recurring mistakes in a domain |
 | Week 2-4 | First 3-5 context docs | When subsystems get complex enough to need specs |
 | Ongoing | New agents + docs as needed | When new domains emerge or failure modes repeat |
